@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md. Wali Ullah — Applied Mathematician &amp; Researcher</title>
+<meta name="description" content="Md. Wali Ullah — PhD Candidate in Applied Mathematics at UC Merced. Research in machine learning, mathematical biology, and computational modeling.">
+<meta name="theme-color" content="#0b0f1a">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Md. Wali Ullah — Applied Mathematician & Researcher">
+<meta property="og:description" content="PhD Candidate in Applied Mathematics at UC Merced. Research in machine learning, mathematical biology, and computational modeling.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236366f1'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Georgia,serif' fill='white' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#f7f7f9;
+    --bg-elev:#ffffff;
+    --text:#14151a;
+    --text-dim:#5a5d6b;
+    --border:#e6e6ec;
+    --accent:#6366f1;
+    --accent-2:#8b5cf6;
+    --accent-soft:#eef0ff;
+    --shadow: 0 10px 30px -12px rgba(20,21,26,0.15);
+    --radius:16px;
+    color-scheme: light;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0d14;
+    --bg-elev:#12141f;
+    --text:#eef0f7;
+    --text-dim:#9a9db0;
+    --border:#232636;
+    --accent:#818cf8;
+    --accent-2:#c084fc;
+    --accent-soft:#1b1c30;
+    --shadow: 0 10px 30px -12px rgba(0,0,0,0.6);
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    transition:background .3s ease, color .3s ease;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{ font-family:'Fraunces', 'Georgia', serif; }
+  a{ color:inherit; text-decoration:none; }
+  img{max-width:100%;display:block;}
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+  ::selection{ background:var(--accent); color:#fff; }
+
+  /* Scroll reveal */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* Nav */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    backdrop-filter:blur(14px) saturate(160%);
+    -webkit-backdrop-filter:blur(14px) saturate(160%);
+    background:color-mix(in srgb, var(--bg) 72%, transparent);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  header.nav.scrolled{ border-bottom-color:var(--border); }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1120px; margin:0 auto; }
+  .brand{ display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.05rem; letter-spacing:-0.01em; }
+  .brand .mark{
+    width:34px; height:34px; border-radius:10px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;
+    box-shadow:var(--shadow);
+  }
+  nav.links{ display:flex; gap:28px; align-items:center; }
+  nav.links a{
+    font-size:.92rem; font-weight:500; color:var(--text-dim);
+    position:relative; padding:4px 0; transition:color .2s;
+  }
+  nav.links a::after{
+    content:''; position:absolute; left:0; bottom:-2px; height:2px; width:0%;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2)); transition:width .25s ease;
+  }
+  nav.links a:hover, nav.links a.active{ color:var(--text); }
+  nav.links a:hover::after, nav.links a.active::after{ width:100%; }
+
+  .nav-actions{ display:flex; align-items:center; gap:10px; }
+  .icon-btn{
+    width:38px; height:38px; border-radius:10px; border:1px solid var(--border);
+    background:var(--bg-elev); display:flex; align-items:center; justify-content:center;
+    cursor:pointer; color:var(--text); transition:transform .15s ease, border-color .2s;
+  }
+  .icon-btn:hover{ transform:translateY(-2px); border-color:var(--accent); }
+  .icon-btn svg{ width:18px; height:18px; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:12px 22px;
+    border-radius:12px; font-weight:600; font-size:.92rem; border:1px solid transparent;
+    cursor:pointer; transition:transform .18s ease, box-shadow .18s ease, background .2s;
+  }
+  .btn-primary{ background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; box-shadow:0 8px 24px -8px color-mix(in srgb, var(--accent) 70%, transparent); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 12px 28px -8px color-mix(in srgb, var(--accent) 80%, transparent); }
+  .btn-ghost{ background:var(--bg-elev); border-color:var(--border); color:var(--text); }
+  .btn-ghost:hover{ transform:translateY(-2px); border-color:var(--accent); }
+
+  .mobile-toggle{ display:none; }
+
+  /* Hero */
+  .hero{ position:relative; padding:170px 0 110px; overflow:hidden; }
+  .blob{ position:absolute; border-radius:50%; filter:blur(70px); opacity:.35; z-index:0; animation:float 14s ease-in-out infinite; }
+  .blob1{ width:420px; height:420px; background:var(--accent); top:-140px; right:-120px; }
+  .blob2{ width:360px; height:360px; background:var(--accent-2); bottom:-160px; left:-100px; animation-delay:-6s; }
+  @keyframes float{ 0%,100%{ transform:translateY(0) scale(1);} 50%{ transform:translateY(-30px) scale(1.06);} }
+
+  .hero-inner{ position:relative; z-index:1; display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size:.8rem; font-weight:600;
+    color:var(--accent); background:var(--accent-soft); padding:7px 14px; border-radius:999px; margin-bottom:22px;
+    letter-spacing:.02em;
+  }
+  .eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--accent); animation:pulse 1.8s ease infinite; }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+
+  .hero h1{ font-size:clamp(2.4rem, 5vw, 3.6rem); line-height:1.08; letter-spacing:-0.02em; margin:0 0 18px; font-weight:600; }
+  .hero h1 .accent{ background:linear-gradient(135deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .role-line{ font-size:clamp(1.05rem,2vw,1.3rem); color:var(--text-dim); min-height:1.6em; margin-bottom:22px; font-weight:500; }
+  .role-line .cursor{ display:inline-block; width:2px; background:var(--accent); margin-left:2px; animation:blink 1s step-end infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .hero p.lede{ font-size:1.05rem; color:var(--text-dim); max-width:52ch; margin:0 0 34px; }
+  .hero-cta{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px; }
+  .social-row{ display:flex; gap:12px; }
+
+  .hero-card{
+    position:relative; border-radius:28px; padding:2px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  }
+  .hero-card-inner{
+    background:var(--bg-elev); border-radius:26px; padding:40px 32px; text-align:center;
+    display:flex; flex-direction:column; align-items:center; gap:18px;
+  }
+  .avatar{
+    width:140px; height:140px; border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:3rem; color:#fff; font-weight:600;
+    box-shadow:0 20px 40px -14px color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+  .hero-card h3{ margin:0; font-size:1.3rem; }
+  .hero-card p{ margin:0; color:var(--text-dim); font-size:.92rem; }
+  .stat-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; width:100%; margin-top:10px; }
+  .stat{ background:var(--accent-soft); border-radius:14px; padding:14px 8px; }
+  .stat b{ display:block; font-size:1.25rem; font-family:'Fraunces',serif; color:var(--accent); }
+  .stat span{ font-size:.72rem; color:var(--text-dim); }
+
+  .scroll-cue{ position:absolute; bottom:26px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; color:var(--text-dim); font-size:.75rem; z-index:1; }
+  .scroll-cue svg{ width:16px; height:16px; animation:bob 2s ease-in-out infinite; }
+  @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(6px);} }
+
+  /* Sections */
+  section{ padding:100px 0; position:relative; }
+  .section-head{ margin-bottom:48px; max-width:640px; }
+  .section-head .kicker{ font-size:.78rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; display:block; }
+  .section-head h2{ font-size:clamp(1.7rem,3vw,2.4rem); margin:0 0 12px; letter-spacing:-0.01em; font-weight:600; }
+  .section-head p{ color:var(--text-dim); margin:0; font-size:1rem; }
+
+  .card{
+    background:var(--bg-elev); border:1px solid var(--border); border-radius:var(--radius);
+    padding:28px; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); border-color:color-mix(in srgb, var(--accent) 40%, var(--border)); }
+
+  /* About */
+  .about-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:28px; }
+  .about-grid p{ color:var(--text-dim); margin:0 0 16px; }
+  .info-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
+  .info-list li{ display:flex; gap:12px; align-items:flex-start; font-size:.92rem; }
+  .info-list svg{ width:18px; height:18px; color:var(--accent); flex-shrink:0; margin-top:2px; }
+  .info-list b{ display:block; font-size:.78rem; text-transform:uppercase; letter-spacing:.04em; color:var(--text-dim); font-weight:600; }
+
+  /* Tags */
+  .tags{ display:flex; flex-wrap:wrap; gap:10px; }
+  .tag{
+    padding:8px 16px; border-radius:999px; font-size:.85rem; font-weight:500;
+    background:var(--accent-soft); color:var(--accent); border:1px solid transparent;
+    transition:transform .2s ease;
+  }
+  .tag:hover{ transform:translateY(-2px); }
+
+  /* Timeline */
+  .timeline{ position:relative; padding-left:28px; }
+  .timeline::before{ content:''; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:linear-gradient(var(--accent),var(--accent-2)); opacity:.4; }
+  .t-item{ position:relative; padding-bottom:34px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{ content:''; position:absolute; left:-28px; top:4px; width:14px; height:14px; border-radius:50%; background:var(--bg-elev); border:3px solid var(--accent); }
+  .t-item .when{ font-size:.78rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.05em; }
+  .t-item h4{ margin:6px 0 4px; font-size:1.08rem; font-family:'Inter'; font-weight:700; }
+  .t-item p{ margin:0; color:var(--text-dim); font-size:.92rem; }
+
+  /* Publications */
+  .pub{ display:flex; gap:18px; padding:22px 0; border-bottom:1px solid var(--border); }
+  .pub:last-child{ border-bottom:none; }
+  .pub .pnum{ font-family:'Fraunces',serif; font-size:1.6rem; color:var(--accent); opacity:.5; flex-shrink:0; width:36px; }
+  .pub h4{ margin:0 0 8px; font-size:1.05rem; line-height:1.4; font-weight:700; }
+  .pub .meta{ font-size:.85rem; color:var(--text-dim); }
+  .pub .meta em{ color:var(--accent); font-style:normal; font-weight:600; }
+
+  /* Skills */
+  .skill-cols{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .skill-cols h4{ font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--text-dim); margin:0 0 16px; }
+
+  /* Contact */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  .contact-card{ display:flex; flex-direction:column; gap:16px; }
+  .contact-row{ display:flex; align-items:center; gap:14px; padding:14px; border:1px solid var(--border); border-radius:14px; transition:.2s; }
+  .contact-row:hover{ border-color:var(--accent); transform:translateX(4px); }
+  .contact-row .ic{ width:40px; height:40px; border-radius:10px; background:var(--accent-soft); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .contact-row .ic svg{ width:19px; height:19px; color:var(--accent); }
+  .contact-row b{ display:block; font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--text-dim); }
+  .contact-row span{ font-size:.94rem; font-weight:600; }
+
+  form.mail-form{ display:flex; flex-direction:column; gap:14px; }
+  .field{ display:flex; flex-direction:column; gap:6px; }
+  .field label{ font-size:.78rem; font-weight:600; color:var(--text-dim); }
+  .field input, .field textarea{
+    background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:12px 14px;
+    color:var(--text); font-family:inherit; font-size:.94rem; resize:vertical; transition:border-color .2s;
+  }
+  .field input:focus, .field textarea:focus{ outline:none; border-color:var(--accent); }
+
+  footer{ border-top:1px solid var(--border); padding:36px 0; }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:.85rem; color:var(--text-dim); }
+  .footer-inner a{ font-weight:600; color:var(--text); }
+
+  @media (max-width: 860px){
+    nav.links{ display:none; }
+    .mobile-toggle{ display:flex; }
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero{ padding:150px 0 90px; text-align:left; }
+    .about-grid, .contact-grid{ grid-template-columns:1fr; }
+    .skill-cols{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width: 520px){
+    .skill-cols{ grid-template-columns:1fr; }
+    .stat-grid{ grid-template-columns:repeat(3,1fr); }
+    .hero-cta{ flex-direction:column; align-items:stretch; }
+  }
+
+  /* Mobile menu panel */
+  .mobile-panel{
+    position:fixed; inset:0; z-index:99; background:var(--bg);
+    display:flex; flex-direction:column; padding:100px 32px 32px; gap:26px;
+    transform:translateY(-100%); transition:transform .35s ease;
+  }
+  .mobile-panel.open{ transform:translateY(0); }
+  .mobile-panel a{ font-size:1.4rem; font-weight:600; }
+</style>
+</head>
+<body>
+
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#home" class="brand"><span class="mark">W</span> Md. Wali Ullah</a>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      <a href="#contact" class="btn btn-primary" style="padding:10px 18px;">Get in touch</a>
+      <button class="icon-btn mobile-toggle" id="menuToggle" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobilePanel">
+  <a href="#about">About</a>
+  <a href="#research">Research</a>
+  <a href="#publications">Publications</a>
+  <a href="#teaching">Teaching</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<main id="home">
+  <section class="hero">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="wrap hero-inner">
+      <div>
+        <span class="eyebrow"><span class="dot"></span> Available for research collaboration</span>
+        <h1>Hi, I'm <span class="accent">Md. Wali Ullah</span></h1>
+        <div class="role-line">I'm a <span id="typed"></span><span class="cursor">&nbsp;</span></div>
+        <p class="lede">PhD Candidate in Applied Mathematics at UC Merced, turning messy real‑world data — climate, health, and biology — into models that explain and predict. I teach, research, and build the occasional web app on the side.</p>
+        <div class="hero-cta">
+          <a href="#publications" class="btn btn-primary">View Publications</a>
+          <a href="#contact" class="btn btn-ghost">Say Hello</a>
+        </div>
+        <div class="social-row">
+          <a class="icon-btn" href="https://scholar.google.com/citations?hl=en&user=zl-WLmcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar" title="Google Scholar">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+          </a>
+          <a class="icon-btn" href="https://www.linkedin.com/in/waliullah1/" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          </a>
+          <a class="icon-btn" href="https://github.com/waliullah21" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.27 5.67.42.36.78 1.07.78 2.16v3.2c0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg>
+          </a>
+          <a class="icon-btn" href="mailto:mdwaliullah@ucmerced.edu" aria-label="Email" title="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-inner">
+          <div class="avatar">WU</div>
+          <h3>Md. Wali Ullah</h3>
+          <p>Applied Mathematics · UC Merced</p>
+          <div class="stat-grid">
+            <div class="stat"><b>2+</b><span>Publications</span></div>
+            <div class="stat"><b>2</b><span>Teaching roles</span></div>
+            <div class="stat"><b>9+</b><span>Research areas</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-cue">
+      Scroll to explore
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">About</span>
+        <h2>Applied math, applied to real problems</h2>
+        <p>A little about who I am and what drives my work.</p>
+      </div>
+      <div class="about-grid">
+        <div class="card reveal">
+          <p>I'm a PhD candidate in Applied Mathematics at UC Merced, where I work at the intersection of statistics, machine learning, and mathematical modeling. My research turns time‑series and biological data into models that help explain public‑health and biological phenomena — from climate‑linked disease dynamics to early markers of chronic illness.</p>
+          <p>Alongside research, I teach at the university level and enjoy mentoring students through the sometimes intimidating, often beautiful, world of applied math. When I'm not deriving equations or training models, I like building clean, fast web interfaces — this site included.</p>
+          <div class="tags" style="margin-top:20px;">
+            <span class="tag">Applied Mathematics</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Mathematical Biology</span>
+            <span class="tag">Public Health Data</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <ul class="info-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>
+              <div><b>Education</b>PhD Candidate, Applied Mathematics — UC Merced</div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div><b>Location</b>Merced, California, USA</div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M9 4v16"/></svg>
+              <div><b>Office</b>ACS 358B, UC Merced</div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+              <div><b>Email</b><a href="mailto:mdwaliullah@ucmerced.edu">mdwaliullah@ucmerced.edu</a></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research -->
+  <section id="research" style="background:var(--bg-elev); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Research</span>
+        <h2>Modeling, machine learning &amp; applied mathematics</h2>
+        <p>Focus areas that guide my current research and the collaborations I'm looking for.</p>
+      </div>
+      <div class="about-grid">
+        <div class="card reveal">
+          <h3 style="margin-top:0;">Interests</h3>
+          <div class="tags">
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Mathematical Biology</span>
+            <span class="tag">Computational Modeling</span>
+            <span class="tag">Time-series Analysis</span>
+            <span class="tag">Numerical Analysis</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Statistics</span>
+            <span class="tag">Probability</span>
+            <span class="tag">PDEs</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3 style="margin-top:0;">Open to collaboration</h3>
+          <p style="color:var(--text-dim); margin:0;">Interested in joint projects in ML for public health, time‑series methods, and data‑driven modeling. Students and researchers welcome to reach out.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section id="publications">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Publications</span>
+        <h2>Selected work</h2>
+        <p>Peer‑reviewed research spanning epidemiology, climate, and machine learning.</p>
+      </div>
+      <div class="card reveal">
+        <div class="pub">
+          <span class="pnum">01</span>
+          <div>
+            <h4>Unveiling the future: Wavelet‑ARIMAX analysis of climate and diarrhea dynamics in Bangladesh's urban centers</h4>
+            <div class="meta"><em>BMC Public Health</em> · January 24, 2025</div>
+          </div>
+        </div>
+        <div class="pub">
+          <span class="pnum">02</span>
+          <div>
+            <h4>Clinically adaptable machine learning model to identify early appreciable features of diabetes</h4>
+            <div class="meta"><em>Intelligent Medicine</em></div>
+          </div>
+        </div>
+        <div style="margin-top:24px;">
+          <a class="btn btn-ghost" href="https://scholar.google.com/citations?hl=en&user=zl-WLmcAAAAJ" target="_blank" rel="noreferrer">
+            View full list on Google Scholar
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaching -->
+  <section id="teaching" style="background:var(--bg-elev); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Teaching</span>
+        <h2>Courses &amp; academic roles</h2>
+        <p>Sharing what I know with students, one office hour at a time.</p>
+      </div>
+      <div class="about-grid">
+        <div class="card reveal">
+          <div class="timeline">
+            <div class="t-item">
+              <div class="when">Aug 2025 — Present</div>
+              <h4>Graduate Teaching Assistant</h4>
+              <p>University of California, Merced</p>
+            </div>
+            <div class="t-item">
+              <div class="when">Dec 2024 — Mar 2025</div>
+              <h4>Lecturer</h4>
+              <p>BAIUST (Bangladesh Army International University of Science &amp; Technology)</p>
+            </div>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3 style="margin-top:0;">Office Hours</h3>
+          <p style="color:var(--text-dim);">By appointment — reach out by email to schedule a time.</p>
+          <div class="contact-row" style="margin-top:8px;">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M9 4v16"/></svg></div>
+            <div><b>Room</b><span>ACS 358B</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Skills</span>
+        <h2>Toolbelt</h2>
+        <p>What I reach for when modeling data or building something on the web.</p>
+      </div>
+      <div class="card reveal">
+        <div class="skill-cols">
+          <div>
+            <h4>Math &amp; Data Science</h4>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">R</span>
+              <span class="tag">MATLAB</span>
+              <span class="tag">Statistics</span>
+              <span class="tag">Time-series</span>
+            </div>
+          </div>
+          <div>
+            <h4>Machine Learning</h4>
+            <div class="tags">
+              <span class="tag">scikit-learn</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">Computer Vision</span>
+              <span class="tag">Numerical Methods</span>
+            </div>
+          </div>
+          <div>
+            <h4>Web Development</h4>
+            <div class="tags">
+              <span class="tag">React</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Tailwind</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" style="background:var(--bg-elev); border-top:1px solid var(--border);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Contact</span>
+        <h2>Let's talk</h2>
+        <p>Email works best, but feel free to connect on LinkedIn or Scholar too.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="card reveal">
+          <h3 style="margin-top:0;">Send a message</h3>
+          <form class="mail-form" id="mailForm">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="you@example.com" required>
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" rows="5" placeholder="What's on your mind?" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="justify-content:center;">
+              Send message
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+          </form>
+        </div>
+        <div class="card reveal contact-card">
+          <h3 style="margin-top:0;">Find me</h3>
+          <a class="contact-row" href="mailto:mdwaliullah@ucmerced.edu">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></div>
+            <div><b>Email (Academic)</b><span>mdwaliullah@ucmerced.edu</span></div>
+          </a>
+          <a class="contact-row" href="https://www.linkedin.com/in/waliullah1/" target="_blank" rel="noreferrer">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></div>
+            <div><b>LinkedIn</b><span>linkedin.com/in/waliullah1</span></div>
+          </a>
+          <a class="contact-row" href="https://scholar.google.com/citations?hl=en&user=zl-WLmcAAAAJ" target="_blank" rel="noreferrer">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg></div>
+            <div><b>Google Scholar</b><span>View publications</span></div>
+          </a>
+          <a class="contact-row" href="https://appliedmath.ucmerced.edu/content/md-wali-ullah" target="_blank" rel="noreferrer">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg></div>
+            <div><b>UC Merced</b><span>Faculty profile page</span></div>
+          </a>
+          <a class="contact-row" href="https://github.com/waliullah21" target="_blank" rel="noreferrer">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.27 5.67.42.36.78 1.07.78 2.16v3.2c0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg></div>
+            <div><b>GitHub</b><span>github.com/waliullah21</span></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <p>© <span id="year"></span> <a href="#home">Md. Wali Ullah</a>. All rights reserved.</p>
+    <a href="#home" style="display:flex; align-items:center; gap:6px;">
+      Back to top
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+  // Theme toggle with persistence
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const sunPath = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>';
+  const moonPath = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    themeIcon.innerHTML = t === 'dark' ? moonPath : sunPath;
+    localStorage.setItem('theme', t);
+  }
+  const saved = localStorage.getItem('theme') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  applyTheme(saved);
+  themeToggle.addEventListener('click', () => {
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  // Sticky nav shadow
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // Mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const mobilePanel = document.getElementById('mobilePanel');
+  menuToggle.addEventListener('click', () => mobilePanel.classList.toggle('open'));
+  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobilePanel.classList.remove('open')));
+
+  // Active link highlighting
+  const sections = document.querySelectorAll('main section[id], main#home');
+  const navAnchors = document.querySelectorAll('nav.links a');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.getAttribute('id');
+        navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => navObserver.observe(s));
+
+  // Reveal on scroll
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Typing effect
+  const roles = [
+    'PhD Candidate in Applied Mathematics',
+    'Researcher in Machine Learning',
+    'Educator & Teaching Assistant',
+    'Builder of Data-Driven Models'
+  ];
+  const typedEl = document.getElementById('typed');
+  let roleIdx = 0, charIdx = 0, deleting = false;
+  function tick(){
+    const current = roles[roleIdx];
+    if(!deleting){
+      charIdx++;
+      typedEl.textContent = current.slice(0, charIdx);
+      if(charIdx === current.length){ deleting = true; setTimeout(tick, 1600); return; }
+    } else {
+      charIdx--;
+      typedEl.textContent = current.slice(0, charIdx);
+      if(charIdx === 0){ deleting = false; roleIdx = (roleIdx + 1) % roles.length; }
+    }
+    setTimeout(tick, deleting ? 35 : 55);
+  }
+  tick();
+
+  // Contact form -> mailto
+  document.getElementById('mailForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const subject = encodeURIComponent('Message from ' + name + ' via personal site');
+    const body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
+    window.location.href = 'mailto:mdwaliullah@ucmerced.edu?subject=' + subject + '&body=' + body;
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
