@@ -1,0 +1,2141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md. Wali Ullah — Applied Mathematician &amp; Researcher</title>
+<meta name="description" content="Md. Wali Ullah — PhD Candidate in Applied Mathematics at UC Merced. 5 peer-reviewed publications in machine learning, mathematical biology, and computational modeling.">
+<meta name="theme-color" content="#0b0f1a">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Md. Wali Ullah — Applied Mathematician & Researcher">
+<meta property="og:description" content="PhD Candidate in Applied Mathematics at UC Merced. Research in machine learning, mathematical biology, and computational modeling.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236366f1'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Georgia,serif' fill='white' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+
+<!-- Three.js (ES modules) — hero background surface + interactive wireframe object -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<!-- GSAP — camera-flight animation for the Data Cosmos -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+<style>
+  :root{
+    --bg:#f7f7f9;
+    --bg-elev:#ffffff;
+    --text:#14151a;
+    --text-dim:#5a5d6b;
+    --border:#e6e6ec;
+    --accent:#6366f1;
+    --accent-2:#8b5cf6;
+    --accent-soft:#eef0ff;
+    --shadow: 0 10px 30px -12px rgba(20,21,26,0.15);
+    --radius:16px;
+    --good-bg:#dcfce7; --good-fg:#15803d;
+    --warn-bg:#fef3c7; --warn-fg:#b45309;
+    color-scheme: light;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0d14;
+    --bg-elev:#12141f;
+    --text:#eef0f7;
+    --text-dim:#9a9db0;
+    --border:#232636;
+    --accent:#818cf8;
+    --accent-2:#c084fc;
+    --accent-soft:#1b1c30;
+    --shadow: 0 10px 30px -12px rgba(0,0,0,0.6);
+    --good-bg:#052e1a; --good-fg:#4ade80;
+    --warn-bg:#3a2a05; --warn-fg:#fbbf24;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    transition:background .3s ease, color .3s ease;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{ font-family:'Fraunces', 'Georgia', serif; }
+  a{ color:inherit; text-decoration:none; }
+  img{max-width:100%;display:block;}
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+  ::selection{ background:var(--accent); color:#fff; }
+
+  /* Scroll progress */
+  .progress-bar{ position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); z-index:300; }
+
+  /* Scroll reveal */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* Nav */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    backdrop-filter:blur(14px) saturate(160%);
+    -webkit-backdrop-filter:blur(14px) saturate(160%);
+    background:color-mix(in srgb, var(--bg) 72%, transparent);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  header.nav.scrolled{ border-bottom-color:var(--border); }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1120px; margin:0 auto; gap:12px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.02rem; letter-spacing:-0.01em; flex-shrink:0; }
+  .brand .mark{
+    width:34px; height:34px; border-radius:10px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;
+    box-shadow:var(--shadow);
+  }
+  nav.links{ display:flex; gap:18px; align-items:center; }
+  nav.links a{
+    font-size:.86rem; font-weight:500; color:var(--text-dim); white-space:nowrap;
+    position:relative; padding:4px 0; transition:color .2s;
+  }
+  nav.links a::after{
+    content:''; position:absolute; left:0; bottom:-2px; height:2px; width:0%;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2)); transition:width .25s ease;
+  }
+  nav.links a:hover, nav.links a.active{ color:var(--text); }
+  nav.links a:hover::after, nav.links a.active::after{ width:100%; }
+
+  .nav-actions{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
+  .icon-btn{
+    width:38px; height:38px; border-radius:10px; border:1px solid var(--border);
+    background:var(--bg-elev); display:flex; align-items:center; justify-content:center;
+    cursor:pointer; color:var(--text); transition:transform .15s ease, border-color .2s;
+  }
+  .icon-btn:hover{ transform:translateY(-2px); border-color:var(--accent); }
+  .icon-btn svg{ width:18px; height:18px; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:12px 22px;
+    border-radius:12px; font-weight:600; font-size:.92rem; border:1px solid transparent;
+    cursor:pointer; transition:transform .18s ease, box-shadow .18s ease, background .2s;
+    font-family:inherit;
+  }
+  .btn-primary{ background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; box-shadow:0 8px 24px -8px color-mix(in srgb, var(--accent) 70%, transparent); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 12px 28px -8px color-mix(in srgb, var(--accent) 80%, transparent); }
+  .btn-ghost{ background:var(--bg-elev); border-color:var(--border); color:var(--text); }
+  .btn-ghost:hover{ transform:translateY(-2px); border-color:var(--accent); }
+
+  .mobile-toggle{ display:none; }
+
+  /* Site-wide 3D background: fixed behind every section, not just the hero */
+  .hero-3d-bg{ position:fixed; inset:0; width:100vw; height:100vh; z-index:-1; display:block; opacity:.45; }
+
+  /* Hero */
+  .hero{ position:relative; padding:170px 0 110px; overflow:hidden; }
+  .spotlight{ position:absolute; inset:0; z-index:0; pointer-events:none; transition:background .15s ease;
+    background:radial-gradient(600px circle at var(--x,50%) var(--y,20%), color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%); }
+
+  .hero-inner{ position:relative; z-index:1; display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size:.8rem; font-weight:600;
+    color:var(--accent); background:var(--accent-soft); padding:7px 14px; border-radius:999px; margin-bottom:22px;
+    letter-spacing:.02em;
+  }
+  .eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--accent); animation:pulse 1.8s ease infinite; }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+
+  .hero h1{ font-size:clamp(2.4rem, 5vw, 3.6rem); line-height:1.08; letter-spacing:-0.02em; margin:0 0 18px; font-weight:600; }
+  .hero h1 .accent{ background:linear-gradient(135deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .role-line{ font-size:clamp(1.05rem,2vw,1.3rem); color:var(--text-dim); min-height:1.6em; margin-bottom:22px; font-weight:500; }
+  .role-line .cursor{ display:inline-block; width:2px; background:var(--accent); margin-left:2px; animation:blink 1s step-end infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .hero p.lede{ font-size:1.05rem; color:var(--text-dim); max-width:52ch; margin:0 0 34px; }
+  .hero-cta{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px; }
+  .social-row{ display:flex; gap:12px; }
+
+  .hero-card{
+    position:relative; border-radius:28px; padding:2px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  }
+  .hero-card-inner{
+    position:relative; overflow:hidden; border-radius:26px; min-height:400px;
+    background:color-mix(in srgb, var(--bg-elev) 88%, transparent);
+  }
+  .hero-3d-obj{ position:absolute; inset:0; width:100%; height:100%; z-index:0; display:block; touch-action:none; cursor:grab; }
+  .hero-3d-obj:active{ cursor:grabbing; }
+  .hero-card-content{
+    position:relative; z-index:1; padding:40px 32px; text-align:center;
+    display:flex; flex-direction:column; align-items:center; gap:18px; pointer-events:none;
+  }
+  .hero-card-content a{ pointer-events:auto; }
+  .avatar{
+    width:140px; height:140px; border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:3rem; color:#fff; font-weight:600;
+    box-shadow:0 20px 40px -14px color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+  .hero-card h3{ margin:0; font-size:1.3rem; }
+  .hero-card p{ margin:0; color:var(--text-dim); font-size:.92rem; }
+  .stat-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; width:100%; margin-top:10px; }
+  .stat{ background:var(--accent-soft); border-radius:14px; padding:14px 8px; }
+  .stat b{ display:block; font-size:1.25rem; font-family:'Fraunces',serif; color:var(--accent); }
+  .stat span{ font-size:.72rem; color:var(--text-dim); }
+
+  .scroll-cue{ position:absolute; bottom:26px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; color:var(--text-dim); font-size:.75rem; z-index:1; }
+  .scroll-cue svg{ width:16px; height:16px; animation:bob 2s ease-in-out infinite; }
+  @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(6px);} }
+
+  /* Sections */
+  section{ padding:100px 0; position:relative; }
+  .section-head{ margin-bottom:48px; max-width:640px; }
+  .section-head .kicker{ font-size:.78rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; display:block; }
+  .section-head h2{ font-size:clamp(1.7rem,3vw,2.4rem); margin:0 0 12px; letter-spacing:-0.01em; font-weight:600; }
+  .section-head p{ color:var(--text-dim); margin:0; font-size:1rem; }
+
+  .card{
+    background:var(--bg-elev); border:1px solid var(--border); border-radius:var(--radius);
+    padding:28px; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); border-color:color-mix(in srgb, var(--accent) 40%, var(--border)); }
+
+  /* 3D tilt (JS-driven; overrides the plain hover lift above via inline style while active) */
+  .tilt{ transition:transform .12s ease-out, box-shadow .25s ease, border-color .25s ease; transform-style:preserve-3d; will-change:transform; }
+
+  /* About */
+  .about-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:28px; margin-bottom:28px; }
+  .about-grid:last-child{ margin-bottom:0; }
+  .about-grid p{ color:var(--text-dim); margin:0 0 16px; }
+  .info-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
+  .info-list li{ display:flex; gap:12px; align-items:flex-start; font-size:.92rem; }
+  .info-list svg{ width:18px; height:18px; color:var(--accent); flex-shrink:0; margin-top:2px; }
+  .info-list b{ display:block; font-size:.78rem; text-transform:uppercase; letter-spacing:.04em; color:var(--text-dim); font-weight:600; }
+
+  /* Tags */
+  .tags{ display:flex; flex-wrap:wrap; gap:10px; }
+  .tag{
+    padding:8px 16px; border-radius:999px; font-size:.85rem; font-weight:500;
+    background:var(--accent-soft); color:var(--accent); border:1px solid transparent;
+    transition:transform .2s ease;
+  }
+  .tag:hover{ transform:translateY(-2px); }
+  .tag.small{ padding:5px 12px; font-size:.76rem; }
+
+  /* Timeline */
+  .timeline{ position:relative; padding-left:28px; }
+  .timeline::before{ content:''; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:linear-gradient(var(--accent),var(--accent-2)); opacity:.4; }
+  .t-item{ position:relative; padding-bottom:34px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{ content:''; position:absolute; left:-28px; top:4px; width:14px; height:14px; border-radius:50%; background:var(--bg-elev); border:3px solid var(--accent); }
+  .t-item .when{ font-size:.78rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.05em; }
+  .t-item h4{ margin:6px 0 4px; font-size:1.08rem; font-family:'Inter'; font-weight:700; }
+  .t-item p{ margin:0; color:var(--text-dim); font-size:.92rem; }
+
+  /* Publications */
+  .filter-btns{ display:flex; gap:10px; margin-bottom:24px; flex-wrap:wrap; }
+  .filter-btn{
+    padding:9px 18px; border-radius:999px; border:1px solid var(--border); background:var(--bg-elev);
+    color:var(--text-dim); font-size:.85rem; font-weight:600; cursor:pointer; transition:.2s; font-family:inherit;
+  }
+  .filter-btn:hover{ border-color:var(--accent); }
+  .filter-btn.active{ background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; border-color:transparent; }
+
+  .pub{ display:flex; gap:18px; padding:22px 0; border-bottom:1px solid var(--border); }
+  .pub:last-child{ border-bottom:none; }
+  .pub .pnum{ font-family:'Fraunces',serif; font-size:1.6rem; color:var(--accent); opacity:.5; flex-shrink:0; width:36px; }
+  .pub h4{ margin:0 0 8px; font-size:1.05rem; line-height:1.4; font-weight:700; }
+  .pub .authors{ font-size:.85rem; color:var(--text-dim); margin-bottom:4px; }
+  .pub .authors b{ color:var(--text); font-weight:700; }
+  .pub .meta{ font-size:.85rem; color:var(--text-dim); display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
+  .pub .meta em{ color:var(--accent); font-style:normal; font-weight:600; }
+  .pub .meta a{ color:var(--accent); font-weight:600; text-decoration:underline; }
+  .badge{ display:inline-block; padding:3px 11px; border-radius:999px; font-size:.66rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; }
+  .badge-published{ background:var(--good-bg); color:var(--good-fg); }
+  .badge-review{ background:var(--warn-bg); color:var(--warn-fg); }
+
+  /* Skills */
+  .skill-cols{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+  .skill-cols h4{ font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--text-dim); margin:0 0 16px; }
+
+  /* Achievements */
+  .ach-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .ach-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
+  .ach-list li{ font-size:.88rem; color:var(--text-dim); display:flex; justify-content:space-between; gap:10px; border-bottom:1px dashed var(--border); padding-bottom:12px; }
+  .ach-list li:last-child{ border-bottom:none; padding-bottom:0; }
+  .ach-list li b{ color:var(--text); font-weight:600; display:block; margin-bottom:2px; }
+  .ach-list li span.when{ flex-shrink:0; font-size:.76rem; color:var(--accent); font-weight:700; white-space:nowrap; }
+
+  /* Contact */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  .contact-card{ display:flex; flex-direction:column; gap:16px; }
+  .contact-row{ display:flex; align-items:center; gap:14px; padding:14px; border:1px solid var(--border); border-radius:14px; transition:.2s; }
+  .contact-row:hover{ border-color:var(--accent); transform:translateX(4px); }
+  .contact-row .ic{ width:40px; height:40px; border-radius:10px; background:var(--accent-soft); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .contact-row .ic svg{ width:19px; height:19px; color:var(--accent); }
+  .contact-row b{ display:block; font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--text-dim); }
+  .contact-row span{ font-size:.94rem; font-weight:600; }
+  .contact-row .copy-btn{ margin-left:auto; flex-shrink:0; width:32px; height:32px; }
+
+  form.mail-form{ display:flex; flex-direction:column; gap:14px; }
+  .field{ display:flex; flex-direction:column; gap:6px; }
+  .field label{ font-size:.78rem; font-weight:600; color:var(--text-dim); }
+  .field input, .field textarea{
+    background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:12px 14px;
+    color:var(--text); font-family:inherit; font-size:.94rem; resize:vertical; transition:border-color .2s;
+  }
+  .field input:focus, .field textarea:focus{ outline:none; border-color:var(--accent); }
+  .form-note{ font-size:.78rem; color:var(--text-dim); margin:0; }
+
+  footer{ border-top:1px solid var(--border); padding:36px 0; }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:.85rem; color:var(--text-dim); }
+  .footer-inner a{ font-weight:600; color:var(--text); }
+
+  /* Back to top + toast */
+  .back-to-top{
+    position:fixed; bottom:28px; right:28px; width:46px; height:46px; border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; border:none;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:var(--shadow);
+    opacity:0; pointer-events:none; transform:translateY(10px); transition:.3s; z-index:90;
+  }
+  .back-to-top.show{ opacity:1; pointer-events:auto; transform:translateY(0); }
+  .toast{
+    position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--text); color:var(--bg); padding:12px 22px; border-radius:12px;
+    font-size:.85rem; font-weight:600; opacity:0; pointer-events:none; transition:.3s; z-index:300;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  @media (max-width: 980px){
+    nav.links{ display:none; }
+    .mobile-toggle{ display:flex; }
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero{ padding:150px 0 90px; text-align:left; }
+    .about-grid, .contact-grid{ grid-template-columns:1fr; }
+    .skill-cols{ grid-template-columns:1fr 1fr; }
+    .ach-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width: 520px){
+    .skill-cols{ grid-template-columns:1fr; }
+    .stat-grid{ grid-template-columns:repeat(3,1fr); }
+    .hero-cta{ flex-direction:column; align-items:stretch; }
+  }
+
+  /* Mobile menu panel */
+  .mobile-panel{
+    position:fixed; inset:0; z-index:99; background:var(--bg);
+    display:flex; flex-direction:column; padding:100px 32px 32px; gap:26px;
+    transform:translateY(-100%); transition:transform .35s ease;
+    overflow-y:auto;
+  }
+  .mobile-panel.open{ transform:translateY(0); }
+  .mobile-panel a{ font-size:1.4rem; font-weight:600; }
+
+  /* ===================== Data Cosmos (alternate 3D mode) ===================== */
+  body.cosmos-active > header, body.cosmos-active > main, body.cosmos-active > footer,
+  body.cosmos-active > .back-to-top, body.cosmos-active > .toast, body.cosmos-active > .progress-bar,
+  body.cosmos-active > .mobile-panel{ visibility:hidden; }
+
+  .cosmos-root{
+    position:fixed; inset:0; z-index:1000; background:radial-gradient(ellipse at 50% 30%, #12142a 0%, #05060d 70%);
+    overflow:hidden;
+  }
+  .cosmos-canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; cursor:grab; }
+  .cosmos-canvas:active{ cursor:grabbing; }
+  .cosmos-canvas.hoverable{ cursor:pointer; }
+
+  .cosmos-topbar{
+    position:absolute; top:20px; left:20px; right:20px; z-index:5;
+    display:flex; align-items:center; justify-content:space-between; pointer-events:none;
+  }
+  .cosmos-topbar > *{ pointer-events:auto; }
+  .cosmos-brand{ color:#eef0f7; font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; display:flex; align-items:center; gap:10px; opacity:.9; }
+  .cosmos-exit-btn{
+    display:inline-flex; align-items:center; gap:8px; padding:11px 20px; border-radius:12px;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); color:#eef0f7;
+    font-weight:600; font-size:.88rem; cursor:pointer; backdrop-filter:blur(10px); transition:.2s; font-family:inherit;
+  }
+  .cosmos-exit-btn:hover{ background:rgba(255,255,255,.16); transform:translateY(-2px); }
+
+  .cosmos-hint{
+    position:absolute; bottom:26px; left:50%; transform:translateX(-50%); z-index:5;
+    color:rgba(238,240,247,.55); font-size:.8rem; letter-spacing:.02em; pointer-events:none;
+    display:flex; align-items:center; gap:8px; transition:opacity .4s ease;
+  }
+
+  .cosmos-legend{
+    position:absolute; bottom:70px; left:50%; transform:translateX(-50%); z-index:5;
+    display:flex; gap:10px; flex-wrap:wrap; justify-content:center; max-width:90vw;
+  }
+  .cosmos-legend button{
+    display:flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px;
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); color:#eef0f7;
+    font-size:.82rem; font-weight:600; cursor:pointer; backdrop-filter:blur(10px); transition:.2s; font-family:inherit;
+  }
+  .cosmos-legend button:hover{ background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.3); transform:translateY(-2px); }
+  .cosmos-legend .dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .cosmos-legend .mystery-dot{
+    background:linear-gradient(135deg,#22d3ee,#c084fc,#fb923c); background-size:200% 200%;
+    animation:mysteryDotShift 3s ease infinite;
+  }
+  @keyframes mysteryDotShift{ 0%,100%{ background-position:0% 50%; } 50%{ background-position:100% 50%; } }
+
+  .cosmos-overlay{
+    position:absolute; inset:0; z-index:10; display:flex; align-items:center; justify-content:center;
+    padding:100px 24px 40px; opacity:0; pointer-events:none; transition:opacity .5s ease;
+  }
+  .cosmos-overlay.show{ opacity:1; }
+  .cosmos-glass{
+    max-width:640px; width:100%; max-height:76vh; overflow-y:auto; pointer-events:none;
+    background:rgba(20,22,36,.55); backdrop-filter:blur(24px) saturate(180%); -webkit-backdrop-filter:blur(24px) saturate(180%);
+    border:1px solid rgba(255,255,255,.14); border-radius:24px; padding:38px 42px;
+    color:#eef0f7; box-shadow:0 40px 100px -24px rgba(0,0,0,.7);
+  }
+  .cosmos-overlay.show .cosmos-glass{ pointer-events:auto; }
+  .cosmos-glass::-webkit-scrollbar{ width:8px; }
+  .cosmos-glass::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.18); border-radius:8px; }
+  .cosmos-glass h2{ margin:0 0 6px; font-size:1.6rem; color:#fff; }
+  .cosmos-glass .sub{ color:rgba(238,240,247,.6); font-size:.9rem; margin:0 0 22px; }
+  .cosmos-glass p{ color:rgba(238,240,247,.82); line-height:1.65; margin:0 0 14px; }
+  .cosmos-glass .tags{ margin:16px 0; }
+  .cosmos-glass .tag{ background:rgba(255,255,255,.08); color:#c7ccff; border:1px solid rgba(255,255,255,.12); }
+  .cosmos-back-btn{
+    display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:10px;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); color:#eef0f7;
+    font-size:.82rem; font-weight:600; cursor:pointer; margin-bottom:20px; transition:.2s; font-family:inherit;
+  }
+  .cosmos-back-btn:hover{ background:rgba(255,255,255,.16); }
+
+  .cosmos-mini-timeline{ list-style:none; margin:16px 0 0; padding:0; display:flex; flex-direction:column; gap:14px; }
+  .cosmos-mini-timeline li{ border-left:2px solid rgba(129,140,248,.5); padding-left:14px; }
+  .cosmos-mini-timeline .when{ font-size:.72rem; font-weight:700; color:#a5b4fc; text-transform:uppercase; letter-spacing:.04em; }
+  .cosmos-mini-timeline b{ display:block; font-size:.96rem; margin:2px 0; color:#fff; }
+  .cosmos-mini-timeline span.org{ font-size:.82rem; color:rgba(238,240,247,.65); }
+
+  .cosmos-pub-item{ padding:14px 0; border-bottom:1px solid rgba(255,255,255,.1); }
+  .cosmos-pub-item:last-child{ border-bottom:none; }
+  .cosmos-pub-item b{ display:block; font-size:.92rem; color:#fff; margin-bottom:4px; line-height:1.4; }
+  .cosmos-pub-item .meta{ font-size:.78rem; color:rgba(238,240,247,.6); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+  .cosmos-glass .contact-row{ border-color:rgba(255,255,255,.14); }
+  .cosmos-glass .contact-row:hover{ border-color:#818cf8; }
+  .cosmos-glass .contact-row b{ color:rgba(238,240,247,.55); }
+  .cosmos-glass .contact-row span{ color:#fff; }
+  .cosmos-glass .contact-row .ic{ background:rgba(255,255,255,.08); }
+  .cosmos-glass .contact-row .ic svg{ color:#a5b4fc; }
+
+  @media (max-width: 720px){
+    .cosmos-legend{ bottom:64px; gap:8px; }
+    .cosmos-legend button{ padding:8px 12px; font-size:.76rem; }
+    .cosmos-glass{ padding:28px 24px; max-height:80vh; }
+    .cosmos-hint{ display:none; }
+  }
+
+  /* Respect reduced-motion: disable JS-driven 3D tilt transitions and instant-scroll */
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .tilt{ transition:none; }
+  }
+
+  /* Print */
+  @media print{
+    header.nav, .mobile-panel, .hero-3d-bg, .hero-3d-obj, .spotlight, .scroll-cue, .hero-cta, .social-row,
+    .icon-btn, .filter-btns, form.mail-form, .back-to-top, .toast, .progress-bar, .cosmos-root,
+    footer a[href="#home"]{ display:none !important; }
+    body{ background:#fff; color:#000; }
+    .card{ box-shadow:none; border:1px solid #ccc; break-inside:avoid; }
+    section{ padding:18px 0; }
+    .hero{ padding:20px 0; }
+    a{ color:#000; text-decoration:underline; }
+    .accent{ -webkit-text-fill-color:#000 !important; color:#000 !important; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="heroBgCanvas" class="hero-3d-bg" aria-hidden="true"></canvas>
+<div class="progress-bar" id="progressBar"></div>
+
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#home" class="brand"><span class="mark">W</span> Md. Wali Ullah</a>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#publications">Publications</a>
+      <a href="#skills">Skills</a>
+      <a href="#achievements">Awards</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      <button class="icon-btn" id="cosmosToggle" aria-label="Enter Data Cosmos — an interactive 3D mode" title="Enter Data Cosmos" style="font-size:1.05rem;">
+        🌌
+      </button>
+      <a href="#contact" class="btn btn-primary" style="padding:10px 18px;">Get in touch</a>
+      <button class="icon-btn mobile-toggle" id="menuToggle" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobilePanel">
+  <a href="#about">About</a>
+  <a href="#education">Education</a>
+  <a href="#experience">Experience</a>
+  <a href="#publications">Publications</a>
+  <a href="#skills">Skills</a>
+  <a href="#achievements">Awards</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<main id="home">
+  <section class="hero" id="heroSection">
+    <div class="spotlight" id="spotlight"></div>
+    <div class="wrap hero-inner">
+      <div>
+        <span class="eyebrow"><span class="dot"></span> Available for research collaboration</span>
+        <h1>Hi, I'm <span class="accent">Md. Wali Ullah</span></h1>
+        <div class="role-line">I'm a <span id="typed"></span><span class="cursor">&nbsp;</span></div>
+        <p class="lede">PhD Candidate in Applied Mathematics at UC Merced, turning messy real‑world data — climate, health, and biology — into models that explain and predict. 5 peer‑reviewed publications, 4 courses taught, and one growing research agenda in epidemiological forecasting.</p>
+        <div class="hero-cta">
+          <a href="#publications" class="btn btn-primary">View Publications</a>
+          <a href="#contact" class="btn btn-ghost">Say Hello</a>
+          <button class="btn btn-ghost" id="printBtn" title="Save this page as a PDF résumé">
+            Download Résumé
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          </button>
+        </div>
+        <div class="social-row">
+          <a class="icon-btn" href="https://scholar.google.com/citations?hl=en&user=zl-WLmcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar" title="Google Scholar">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+          </a>
+          <a class="icon-btn" href="https://www.linkedin.com/in/waliullah1/" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          </a>
+          <a class="icon-btn" href="https://github.com/waliullah21" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.27 5.67.42.36.78 1.07.78 2.16v3.2c0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg>
+          </a>
+          <a class="icon-btn" href="mailto:mdwaliullah@ucmerced.edu" aria-label="Email" title="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-inner">
+          <canvas id="heroObjCanvas" class="hero-3d-obj" aria-hidden="true" title="Drag to rotate"></canvas>
+          <div class="hero-card-content">
+            <div class="avatar">WU</div>
+            <h3>Md. Wali Ullah</h3>
+            <p>Applied Mathematics · UC Merced</p>
+            <div class="stat-grid">
+              <div class="stat"><b data-target="5">0</b><span>Publications</span></div>
+              <div class="stat"><b data-target="7">0</b><span>Research Areas</span></div>
+              <div class="stat"><b data-target="3">0</b><span>Honors</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-cue">
+      Scroll to explore
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">About</span>
+        <h2>Applied math, applied to real problems</h2>
+        <p>A little about who I am and what drives my work.</p>
+      </div>
+      <div class="about-grid">
+        <div class="card reveal">
+          <p>I'm a PhD candidate in Applied Mathematics at UC Merced, advised by Prof. Dr. Roummel Marcia, where I work at the intersection of statistics, machine learning, and mathematical modeling. My research turns time‑series and biological data into models that help explain public‑health and biological phenomena — from climate‑linked disease dynamics to epidemiological forecasting of Valley Fever in California.</p>
+          <p>Alongside research, I teach at the university level and enjoy mentoring students through the sometimes intimidating, often beautiful, world of applied math. I hold an M.S. and B.S. in Applied Mathematics from Noakhali Science and Technology University, Bangladesh, and have contributed to peer‑reviewed work spanning epidemiology, hydrology, agriculture, and renewable energy forecasting.</p>
+          <div class="tags" style="margin-top:20px;">
+            <span class="tag">Applied Mathematics</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Mathematical Biology</span>
+            <span class="tag">Public Health Data</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <ul class="info-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>
+              <div><b>Education</b>PhD Candidate, Applied Mathematics — UC Merced</div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div><b>Location</b>Merced, California, USA</div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+              <div><b>Email</b><a href="mailto:mdwaliullah@ucmerced.edu">mdwaliullah@ucmerced.edu</a></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="card reveal">
+          <h3 style="margin-top:0;">Research Interests</h3>
+          <div class="tags">
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Deep Learning</span>
+            <span class="tag">Mathematical Biology</span>
+            <span class="tag">Data-Driven Mathematical Modelling</span>
+            <span class="tag">Time Series Analysis</span>
+            <span class="tag">Image Processing/Segmentation</span>
+            <span class="tag">Numerical Optimization</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3 style="margin-top:0;">Open to collaboration</h3>
+          <p style="color:var(--text-dim); margin:0;">Interested in joint projects in ML for public health, time‑series methods, and data‑driven modeling. Students and researchers welcome to reach out.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" style="background:color-mix(in srgb, var(--bg-elev) 82%, transparent); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Education</span>
+        <h2>Academic journey</h2>
+        <p>From Noakhali to Merced — three degrees in Applied Mathematics.</p>
+      </div>
+      <div class="card reveal">
+        <div class="timeline">
+          <div class="t-item">
+            <div class="when">Fall 2025 — Present</div>
+            <h4>Doctor of Philosophy in Applied Mathematics</h4>
+            <p>University of California, Merced, CA, USA<br>Advisor: Prof. Dr. Roummel Marcia</p>
+          </div>
+          <div class="t-item">
+            <div class="when">2021 — 2022</div>
+            <h4>Master of Science in Applied Mathematics</h4>
+            <p>Noakhali Science and Technology University, Bangladesh<br>
+            Advisor: Prof. Dr. Md. Jamal Hossain · GPA: 3.61 / 4.00 · Degree conferred 26 June 2024<br>
+            Thesis: <em style="color:var(--text); font-style:normal; font-weight:600;">"Unveiling the Future: Wavelet‑ARIMAX Analysis of Climate and Diarrhea Dynamics in Bangladesh's Urban Centers"</em></p>
+          </div>
+          <div class="t-item">
+            <div class="when">2017 — 2018</div>
+            <h4>Bachelor of Science in Applied Mathematics</h4>
+            <p>Noakhali Science and Technology University, Bangladesh<br>
+            GPA: 3.62 / 4.00 · Degree conferred 14 March 2023<br>
+            Project: <em style="color:var(--text); font-style:normal; font-weight:600;">"Deep Learning Powered Potato Leaf Disease Detection and Image Classification with CNN"</em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Experience</span>
+        <h2>Research &amp; teaching roles</h2>
+        <p>Teaching, research, and short‑term programs across two countries.</p>
+      </div>
+      <div class="card reveal tilt">
+        <div class="timeline">
+          <div class="t-item">
+            <div class="when">Fall 2025 — Present</div>
+            <h4>Graduate Teaching Assistant</h4>
+            <p>Department of Applied Mathematics, University of California, Merced</p>
+            <div class="tags" style="margin-top:10px;">
+              <span class="tag small">Math 21 · Calculus I (Fall 25, Su 26)</span>
+              <span class="tag small">Math 22 · Calculus II (Sp 26)</span>
+              <span class="tag small">Math 11 · Calculus I (Su 26)</span>
+              <span class="tag small">Math 24 · Linear Algebra &amp; DEs (Fall 26)</span>
+            </div>
+          </div>
+          <div class="t-item">
+            <div class="when">Summer 2026 — Present</div>
+            <h4>Graduate Student Researcher</h4>
+            <p>Department of Applied Mathematics, UC Merced<br>Project: Data‑Driven Epidemiological Forecasting and Disease Surveillance Modeling of Valley Fever in California</p>
+          </div>
+          <div class="t-item">
+            <div class="when">Jul 20 – 31, 2026</div>
+            <h4>2026 LLNL Data Science Challenge</h4>
+            <p>Multi‑Agentic AI for Materials Science — Lawrence Livermore National Laboratory<br>Supported by the U.S. Department of Energy (Contract DE‑AC52‑07NA27344)</p>
+          </div>
+          <div class="t-item">
+            <div class="when">Dec 2024 — Mar 2025</div>
+            <h4>Lecturer in Mathematics</h4>
+            <p>Faculty of Science and Humanities, Bangladesh Army International University of Science and Technology, Cumilla, Bangladesh</p>
+          </div>
+          <div class="t-item">
+            <div class="when">Dec 2022 — May 2023</div>
+            <h4>Research Assistant</h4>
+            <p>Noakhali Science and Technology University<br>Project: A Computer Vision‑based Pineapple Disease Recognition for Endurable Agricultural Production</p>
+          </div>
+          <div class="t-item">
+            <div class="when">Feb 2020 — Jan 2021</div>
+            <h4>Research Volunteer</h4>
+            <p>Research Cell, Noakhali Science and Technology University</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section id="publications" style="background:color-mix(in srgb, var(--bg-elev) 82%, transparent); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Publications</span>
+        <h2>Selected work</h2>
+        <p>Peer‑reviewed research spanning epidemiology, climate, agriculture, and renewable energy.</p>
+      </div>
+
+      <div class="filter-btns reveal">
+        <button class="filter-btn active" data-filter="all">All (5)</button>
+        <button class="filter-btn" data-filter="published">Published (3)</button>
+        <button class="filter-btn" data-filter="review">Under Review (2)</button>
+      </div>
+
+      <div class="card reveal tilt">
+        <div class="pub" data-status="published">
+          <span class="pnum">01</span>
+          <div>
+            <h4>Clinically adaptable machine learning model to identify early appreciable features of diabetes</h4>
+            <div class="authors">N. Nipa, M. H. Riyad, S. Satu, <b>Walliullah</b>, K. C. Howlader, M. A. Moni</div>
+            <div class="meta">
+              <span class="badge badge-published">Published · Q1</span>
+              <em>Intelligent Medicine</em> · Vol. 4, No. 1, pp. 22–32 · 2024
+              <a href="https://doi.org/10.1016/j.imed.2023.01.003" target="_blank" rel="noreferrer">DOI ↗</a>
+            </div>
+          </div>
+        </div>
+        <div class="pub" data-status="published">
+          <span class="pnum">02</span>
+          <div>
+            <h4>Unveiling the future: Wavelet‑ARIMAX analysis of climate and diarrhea dynamics in Bangladesh's urban centers</h4>
+            <div class="authors"><b>M. Waliullah</b>, M. J. Hossain, M. R. Hasan, A. Hannan, M. M. Rahman</div>
+            <div class="meta">
+              <span class="badge badge-published">Published · Q1</span>
+              <em>BMC Public Health</em> · Vol. 25, No. 1, 318 · 2025
+              <a href="https://doi.org/10.1186/s12889-024-20920-z" target="_blank" rel="noreferrer">DOI ↗</a>
+            </div>
+          </div>
+        </div>
+        <div class="pub" data-status="published">
+          <span class="pnum">03</span>
+          <div>
+            <h4>Topological Data Analysis and Wavelet‑Unsupervised Machine Learning Approaches to Identifying the Flooding and Non‑Flooding Zones</h4>
+            <div class="authors">M. R. Hasan, M. J. Hossain, <b>M. Waliullah</b>, A. Hannan, M. M. Rahman</div>
+            <div class="meta">
+              <span class="badge badge-published">Published · Q1</span>
+              <em>IEEE Access</em> · Vol. 13, pp. 111710–111721 · 2025
+              <a href="https://doi.org/10.1109/ACCESS.2025.3583581" target="_blank" rel="noreferrer">DOI ↗</a>
+            </div>
+          </div>
+        </div>
+        <div class="pub" data-status="review">
+          <span class="pnum">04</span>
+          <div>
+            <h4>An advanced technique for enhancing predictive accuracy of fish production: Insights from Kaptai Lake, Bangladesh</h4>
+            <div class="authors"><b>Waliullah, M.</b>, Hossain, M. J., Hannan, A., Begum, S., Hasan, M. R.</div>
+            <div class="meta">
+              <span class="badge badge-review">Under Review · Q1</span>
+              <em>Heliyon</em> · Manuscript HELIYON‑D‑25‑09381 · 2025
+            </div>
+          </div>
+        </div>
+        <div class="pub" data-status="review">
+          <span class="pnum">05</span>
+          <div>
+            <h4>Advancing Solar Radiation Forecasting: A Wavelet‑ARMAX Approach Leveraging Meteorological Variables for Enhanced Accuracy and Insights</h4>
+            <div class="authors"><b>Waliullah, M.</b>, Hossain, M. J., Begum, S., Hossain, M. R., Hasan, M. R.</div>
+            <div class="meta">
+              <span class="badge badge-review">Under Review · Q1</span>
+              <em>Big Data Research</em> · Manuscript BDR‑D‑26‑00254 · 2026
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:24px;">
+          <a class="btn btn-ghost" href="https://scholar.google.com/citations?hl=en&user=zl-WLmcAAAAJ" target="_blank" rel="noreferrer">
+            View full list on Google Scholar
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Skills</span>
+        <h2>Toolbelt</h2>
+        <p>What I reach for when modeling data and analyzing results.</p>
+      </div>
+      <div class="card reveal tilt">
+        <div class="skill-cols">
+          <div>
+            <h4>Data Analysis &amp; Visualization</h4>
+            <div class="tags">
+              <span class="tag">Pandas</span>
+              <span class="tag">NumPy</span>
+              <span class="tag">SciPy</span>
+              <span class="tag">Matplotlib</span>
+              <span class="tag">Seaborn</span>
+              <span class="tag">Statsmodels</span>
+            </div>
+          </div>
+          <div>
+            <h4>Programming Languages</h4>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">MATLAB</span>
+            </div>
+          </div>
+          <div>
+            <h4>Machine Learning</h4>
+            <div class="tags">
+              <span class="tag">Scikit-learn</span>
+              <span class="tag">TensorFlow</span>
+            </div>
+          </div>
+          <div>
+            <h4>Soft Skills</h4>
+            <div class="tags">
+              <span class="tag">Communication</span>
+              <span class="tag">Strategic Thinking</span>
+              <span class="tag">Collaboration</span>
+              <span class="tag">Time Management</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section id="achievements" style="background:color-mix(in srgb, var(--bg-elev) 82%, transparent); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Achievements</span>
+        <h2>Honors, seminars &amp; leadership</h2>
+        <p>Fellowships, scholarly training, and service beyond the lab.</p>
+      </div>
+      <div class="ach-grid">
+        <div class="card reveal">
+          <h3 style="margin-top:0;">Honors &amp; Awards</h3>
+          <ul class="ach-list">
+            <li><div><b>MS Research Fellowship</b>Research Cell, Noakhali Science and Technology University</div><span class="when">2024</span></li>
+            <li><div><b>National Science and Technology Fellowship</b>Ministry of Science and Technology, Bangladesh</div><span class="when">2023–24</span></li>
+            <li><div><b>Merit‑Based Govt. Junior School Certificate Scholarship</b>Bangladesh</div><span class="when">2012</span></li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3 style="margin-top:0;">Seminars &amp; Workshops</h3>
+          <ul class="ach-list">
+            <li><div><b>Mathematical Biology Seminar</b>UC Merced</div><span class="when">Spr 26</span></li>
+            <li><div><b>Applied Mathematics Seminars</b>UC Merced</div><span class="when">Fall 25</span></li>
+            <li><div><b>Imaging and Sensing Seminar</b>UC Merced</div><span class="when">Fall 25</span></li>
+            <li><div><b>Crafting an Impactful Scientific Research Paper</b>NSTU</div><span class="when">Dec 23</span></li>
+            <li><div><b>How to Write a Good Research Paper</b>NSTU</div><span class="when">Jan 23</span></li>
+            <li><div><b>1st NSTU Science Club Science Fiesta</b>NSTU Science Club</div><span class="when">Mar 20</span></li>
+            <li><div><b>Workshop on Scientific Poster Presentation</b>NSTU Science Club</div><span class="when">Apr 21</span></li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3 style="margin-top:0;">Leadership</h3>
+          <ul class="ach-list">
+            <li><div><b>Former Treasurer</b>NSTU Mathematics Club</div></li>
+            <li><div><b>Former Vice‑President</b>NSTU Sonar Bangla Family</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Contact</span>
+        <h2>Let's talk</h2>
+        <p>Email works best, but feel free to connect on LinkedIn or Scholar too.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="card reveal">
+          <h3 style="margin-top:0;">Send a message</h3>
+          <form class="mail-form" id="mailForm">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="you@example.com" required>
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" rows="5" placeholder="What's on your mind?" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="justify-content:center;">
+              Send message
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+            <p class="form-note">Opens your email client with the message pre‑filled and addressed to me.</p>
+          </form>
+        </div>
+        <div class="card reveal contact-card">
+          <h3 style="margin-top:0;">Find me</h3>
+          <div class="social-row" style="margin-top:8px;">
+            <a class="icon-btn" href="https://scholar.google.com/citations?hl=en&user=zl-WLmcAAAAJ" target="_blank" rel="noreferrer" aria-label="Google Scholar" title="Google Scholar">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+            </a>
+            <a class="icon-btn" href="https://www.linkedin.com/in/waliullah1/" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+            <a class="icon-btn" href="https://github.com/waliullah21" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.27 5.67.42.36.78 1.07.78 2.16v3.2c0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg>
+            </a>
+            <a class="icon-btn" href="mailto:mdwaliullah@ucmerced.edu" aria-label="Email" title="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <p>© <span id="year"></span> <a href="#home">Md. Wali Ullah</a>. All rights reserved.</p>
+    <a href="#home" style="display:flex; align-items:center; gap:6px;">
+      Back to top
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </a>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+<div class="toast" id="toast"></div>
+
+<!-- ================= Data Cosmos: alternate interactive 3D mode ================= -->
+<div class="cosmos-root" id="cosmosRoot" hidden>
+  <canvas id="cosmosCanvas" class="cosmos-canvas"></canvas>
+
+  <div class="cosmos-topbar">
+    <div class="cosmos-brand">🌌 Data Cosmos</div>
+    <div style="display:flex; gap:10px;">
+      <button class="cosmos-exit-btn" id="cosmosMuteBtn" title="Toggle sound" aria-label="Toggle sound" style="padding:11px 13px;">
+        <svg id="cosmosMuteIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+      </button>
+      <button class="cosmos-exit-btn" id="cosmosExitBtn">
+        Exit Data Cosmos
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="cosmos-legend" id="cosmosLegend">
+    <button data-node="about"><span class="dot" style="background:#818cf8;"></span> About &amp; Education</button>
+    <button data-node="publications"><span class="dot" style="background:#c084fc;"></span> Publications</button>
+    <button data-node="experience"><span class="dot" style="background:#38bdf8;"></span> Experience &amp; Skills</button>
+    <button data-node="contact"><span class="dot" style="background:#fb923c;"></span> Contact</button>
+    <button data-node="mystery"><span class="dot mystery-dot"></span> ??? Beyond the Known</button>
+  </div>
+
+  <div class="cosmos-hint" id="cosmosHint">Drag to look around · Scroll to zoom · Click a node to explore</div>
+
+  <!-- About & Education overlay -->
+  <div class="cosmos-overlay" id="overlay-about" data-node="about">
+    <div class="cosmos-glass">
+      <button class="cosmos-back-btn" data-back>← Back to Cosmos</button>
+      <h2>About &amp; Education</h2>
+      <p class="sub">Lorenz attractor node</p>
+      <p>PhD candidate in Applied Mathematics at UC Merced, advised by Prof. Dr. Roummel Marcia, working at the intersection of statistics, machine learning, and mathematical modeling — turning time‑series and biological data into models that explain public‑health phenomena, from climate‑linked disease dynamics to epidemiological forecasting of Valley Fever in California.</p>
+      <div class="tags">
+        <span class="tag">Applied Mathematics</span>
+        <span class="tag">Machine Learning</span>
+        <span class="tag">Mathematical Biology</span>
+      </div>
+      <ul class="cosmos-mini-timeline">
+        <li><div class="when">Fall 2025 — Present</div><b>Ph.D. in Applied Mathematics</b><span class="org">University of California, Merced · Advisor: Prof. Dr. Roummel Marcia</span></li>
+        <li><div class="when">2021 — 2022</div><b>M.S. in Applied Mathematics</b><span class="org">Noakhali Science &amp; Technology University · GPA 3.61/4.00</span></li>
+        <li><div class="when">2017 — 2018</div><b>B.S. in Applied Mathematics</b><span class="org">Noakhali Science &amp; Technology University · GPA 3.62/4.00</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Publications overlay -->
+  <div class="cosmos-overlay" id="overlay-publications" data-node="publications">
+    <div class="cosmos-glass">
+      <button class="cosmos-back-btn" data-back>← Back to Cosmos</button>
+      <h2>Publications</h2>
+      <p class="sub">Neural network node · 5 peer‑reviewed works</p>
+      <div class="cosmos-pub-item">
+        <b>Clinically adaptable machine learning model to identify early appreciable features of diabetes</b>
+        <div class="meta"><span class="badge badge-published">Published · Q1</span> Intelligent Medicine · 2024</div>
+      </div>
+      <div class="cosmos-pub-item">
+        <b>Unveiling the future: Wavelet‑ARIMAX analysis of climate and diarrhea dynamics in Bangladesh's urban centers</b>
+        <div class="meta"><span class="badge badge-published">Published · Q1</span> BMC Public Health · 2025</div>
+      </div>
+      <div class="cosmos-pub-item">
+        <b>Topological Data Analysis and Wavelet‑Unsupervised ML Approaches to Identifying Flooding Zones</b>
+        <div class="meta"><span class="badge badge-published">Published · Q1</span> IEEE Access · 2025</div>
+      </div>
+      <div class="cosmos-pub-item">
+        <b>An advanced technique for enhancing predictive accuracy of fish production: Kaptai Lake, Bangladesh</b>
+        <div class="meta"><span class="badge badge-review">Under Review · Q1</span> Heliyon · 2025</div>
+      </div>
+      <div class="cosmos-pub-item">
+        <b>Advancing Solar Radiation Forecasting: A Wavelet‑ARMAX Approach</b>
+        <div class="meta"><span class="badge badge-review">Under Review · Q1</span> Big Data Research · 2026</div>
+      </div>
+      <div style="margin-top:20px;">
+        <a class="btn btn-ghost" href="https://scholar.google.com/citations?hl=en&user=zl-WLmcAAAAJ" target="_blank" rel="noreferrer">View on Google Scholar</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Experience & Skills overlay -->
+  <div class="cosmos-overlay" id="overlay-experience" data-node="experience">
+    <div class="cosmos-glass">
+      <button class="cosmos-back-btn" data-back>← Back to Cosmos</button>
+      <h2>Experience &amp; Skills</h2>
+      <p class="sub">Time‑series wave node</p>
+      <ul class="cosmos-mini-timeline">
+        <li><div class="when">Fall 2025 — Present</div><b>Graduate Teaching Assistant</b><span class="org">UC Merced — Math 21, 22, 11, 24</span></li>
+        <li><div class="when">Summer 2026 — Present</div><b>Graduate Student Researcher</b><span class="org">UC Merced — Valley Fever forecasting</span></li>
+        <li><div class="when">Jul 2026</div><b>LLNL Data Science Challenge</b><span class="org">Lawrence Livermore National Laboratory</span></li>
+        <li><div class="when">Dec 2024 — Mar 2025</div><b>Lecturer in Mathematics</b><span class="org">BAIUST, Cumilla, Bangladesh</span></li>
+      </ul>
+      <div class="tags" style="margin-top:20px;">
+        <span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">Pandas</span>
+        <span class="tag">NumPy</span><span class="tag">Scikit-learn</span><span class="tag">TensorFlow</span>
+        <span class="tag">Statsmodels</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact overlay -->
+  <div class="cosmos-overlay" id="overlay-contact" data-node="contact">
+    <div class="cosmos-glass">
+      <button class="cosmos-back-btn" data-back>← Back to Cosmos</button>
+      <h2>Contact</h2>
+      <p class="sub">Data constellation node</p>
+      <a class="contact-row" href="mailto:mdwaliullah@ucmerced.edu">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></div>
+        <div><b>Email</b><span>mdwaliullah@ucmerced.edu</span></div>
+      </a>
+      <a class="contact-row" href="https://www.linkedin.com/in/waliullah1/" target="_blank" rel="noreferrer">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></div>
+        <div><b>LinkedIn</b><span>linkedin.com/in/waliullah1</span></div>
+      </a>
+      <a class="contact-row" href="https://scholar.google.com/citations?hl=en&user=zl-WLmcAAAAJ" target="_blank" rel="noreferrer">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg></div>
+        <div><b>Google Scholar</b><span>5 publications</span></div>
+      </a>
+      <a class="contact-row" href="https://github.com/waliullah21" target="_blank" rel="noreferrer">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.27 5.67.42.36.78 1.07.78 2.16v3.2c0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg></div>
+        <div><b>GitHub</b><span>github.com/waliullah21</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Mystery overlay: a hidden 5th node, not mapped to a scrolling-site section -->
+  <div class="cosmos-overlay" id="overlay-mystery" data-node="mystery">
+    <div class="cosmos-glass">
+      <button class="cosmos-back-btn" data-back>← Back to Cosmos</button>
+      <h2>Beyond the Known</h2>
+      <p class="sub">Mystery node · honors, seminars &amp; leadership</p>
+      <p>A hidden corner of the cosmos — the parts of the story that don't fit neatly into research or teaching.</p>
+      <ul class="cosmos-mini-timeline">
+        <li><div class="when">2024</div><b>MS Research Fellowship</b><span class="org">Research Cell, Noakhali Science and Technology University</span></li>
+        <li><div class="when">2023–24</div><b>National Science and Technology Fellowship</b><span class="org">Ministry of Science and Technology, Bangladesh</span></li>
+        <li><div class="when">2012</div><b>Merit‑Based Govt. Junior School Certificate Scholarship</b><span class="org">Bangladesh</span></li>
+      </ul>
+      <div class="tags" style="margin-top:18px;">
+        <span class="tag">Former Treasurer — NSTU Mathematics Club</span>
+        <span class="tag">Former Vice‑President — NSTU Sonar Bangla Family</span>
+      </div>
+      <p style="margin-top:18px; font-size:.85rem; color:rgba(238,240,247,.55);">Also: seminars in Mathematical Biology, Applied Mathematics, and Imaging &amp; Sensing at UC Merced, plus research‑writing workshops at NSTU.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Theme toggle with persistence
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const sunPath = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>';
+  const moonPath = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    themeIcon.innerHTML = t === 'dark' ? moonPath : sunPath;
+    localStorage.setItem('theme', t);
+  }
+  const saved = localStorage.getItem('theme') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  applyTheme(saved);
+  themeToggle.addEventListener('click', () => {
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  // Scroll progress bar + sticky nav shadow + back-to-top visibility
+  const progressBar = document.getElementById('progressBar');
+  const nav = document.getElementById('siteNav');
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+    backToTop.classList.toggle('show', window.scrollY > 600);
+    const h = document.documentElement;
+    const scrolled = h.scrollHeight > h.clientHeight ? (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 : 0;
+    progressBar.style.width = scrolled + '%';
+  });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const mobilePanel = document.getElementById('mobilePanel');
+  menuToggle.addEventListener('click', () => mobilePanel.classList.toggle('open'));
+  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobilePanel.classList.remove('open')));
+
+  // Active link highlighting
+  const sections = document.querySelectorAll('main section[id], main#home');
+  const navAnchors = document.querySelectorAll('nav.links a');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.getAttribute('id');
+        navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => navObserver.observe(s));
+
+  // Reveal on scroll
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Animated stat counters
+  function animateCount(el){
+    const target = parseInt(el.dataset.target, 10);
+    const duration = 1200;
+    const start = performance.now();
+    function step(now){
+      const p = Math.min((now - start) / duration, 1);
+      el.textContent = Math.floor(p * target);
+      if(p < 1) requestAnimationFrame(step); else el.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.querySelectorAll('[data-target]').forEach(animateCount);
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.stat-grid').forEach(g => statObserver.observe(g));
+
+  // Hero cursor spotlight
+  const heroSection = document.getElementById('heroSection');
+  const spotlight = document.getElementById('spotlight');
+  heroSection.addEventListener('mousemove', (e) => {
+    const rect = heroSection.getBoundingClientRect();
+    spotlight.style.setProperty('--x', ((e.clientX - rect.left) / rect.width * 100) + '%');
+    spotlight.style.setProperty('--y', ((e.clientY - rect.top) / rect.height * 100) + '%');
+  });
+
+  // 3D tilt on hover for experience/publications/skills cards (custom, no dependency)
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion) {
+    document.querySelectorAll('.tilt').forEach((el) => {
+      const maxTilt = 6; // degrees — kept subtle since these are large content cards
+      let rafId = null, pendingEvent = null;
+      function applyTilt() {
+        rafId = null;
+        const rect = el.getBoundingClientRect();
+        const x = (pendingEvent.clientX - rect.left) / rect.width;
+        const y = (pendingEvent.clientY - rect.top) / rect.height;
+        const rotY = (x - 0.5) * 2 * maxTilt;
+        const rotX = (0.5 - y) * 2 * maxTilt;
+        el.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(0)`;
+      }
+      el.addEventListener('mousemove', (e) => {
+        pendingEvent = e;
+        if (rafId === null) rafId = requestAnimationFrame(applyTilt);
+      });
+      el.addEventListener('mouseleave', () => {
+        if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+        el.style.transform = '';
+      });
+    });
+  }
+
+  // Publications filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const pubItems = document.querySelectorAll('.pub');
+  filterBtns.forEach(btn => btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    pubItems.forEach(p => {
+      p.style.display = (f === 'all' || p.dataset.status === f) ? 'flex' : 'none';
+    });
+  }));
+
+  // Toast helper
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  // Print / download résumé
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+
+  // Typing effect
+  const roles = [
+    'PhD Candidate in Applied Mathematics',
+    'Graduate Teaching Assistant at UC Merced',
+    'Researcher in Machine Learning',
+    'Builder of Data-Driven Models'
+  ];
+  const typedEl = document.getElementById('typed');
+  let roleIdx = 0, charIdx = 0, deleting = false;
+  function tick(){
+    const current = roles[roleIdx];
+    if(!deleting){
+      charIdx++;
+      typedEl.textContent = current.slice(0, charIdx);
+      if(charIdx === current.length){ deleting = true; setTimeout(tick, 1600); return; }
+    } else {
+      charIdx--;
+      typedEl.textContent = current.slice(0, charIdx);
+      if(charIdx === 0){ deleting = false; roleIdx = (roleIdx + 1) % roles.length; }
+    }
+    setTimeout(tick, deleting ? 35 : 55);
+  }
+  tick();
+
+  // Contact form -> mailto
+  document.getElementById('mailForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const subject = encodeURIComponent('Message from ' + name + ' via personal site');
+    const body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
+    showToast('Opening your email client…');
+    window.location.href = 'mailto:mdwaliullah@ucmerced.edu?subject=' + subject + '&body=' + body;
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<script type="module">
+  // ---------------------------------------------------------------------
+  // Three.js scenes: (1) an ambient wave-field background fixed behind
+  // the entire page (every section, not just the hero), and (2) a
+  // draggable wireframe icosahedron confined to the hero card. Both
+  // share a single requestAnimationFrame loop; everything stops — no
+  // render, no rAF — when the tab is hidden, and the icosahedron
+  // additionally pauses once you scroll past the hero.
+  // ---------------------------------------------------------------------
+  try {
+    const THREE = await import('three');
+    const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const heroSection = document.getElementById('heroSection');
+    const clock = new THREE.Clock();
+
+    // Pause entirely while the Data Cosmos alternate mode is open (avoids running
+    // two heavy WebGL scenes at once, and the hero canvases are hidden anyway).
+    let cosmosOpen = false;
+    window.addEventListener('cosmos:open', () => { cosmosOpen = true; });
+    window.addEventListener('cosmos:close', () => { cosmosOpen = false; clock.getDelta(); });
+
+    function getAccentColors() {
+      const styles = getComputedStyle(document.documentElement);
+      return {
+        c1: new THREE.Color(styles.getPropertyValue('--accent').trim() || '#6366f1'),
+        c2: new THREE.Color(styles.getPropertyValue('--accent-2').trim() || '#8b5cf6'),
+      };
+    }
+
+    // ---------- Scene 1: ambient mathematical wave-field background ----------
+    const bgCanvas = document.getElementById('heroBgCanvas');
+    const bgScene = new THREE.Scene();
+    const bgCamera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+    bgCamera.position.set(0, 6.5, 13);
+    bgCamera.lookAt(0, -1, 0);
+
+    const bgRenderer = new THREE.WebGLRenderer({ canvas: bgCanvas, alpha: true, antialias: true });
+    bgRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const { c1, c2 } = getAccentColors();
+    const waveUniforms = {
+      uTime: { value: 0 },
+      uMouse: { value: new THREE.Vector2(0, 0) },
+      uColor1: { value: c1 },
+      uColor2: { value: c2 },
+    };
+    const planeGeo = new THREE.PlaneGeometry(46, 46, 42, 42);
+    const wireGeo = new THREE.WireframeGeometry(planeGeo);
+    const waveMaterial = new THREE.ShaderMaterial({
+      uniforms: waveUniforms,
+      transparent: true,
+      depthWrite: false,
+      vertexShader: `
+        uniform float uTime;
+        uniform vec2 uMouse;
+        varying float vHeight;
+        void main() {
+          vec3 pos = position;
+          float freq = 0.28;
+          float wave = sin(pos.x * freq + uTime) * cos(pos.y * freq + uTime * 0.8);
+          wave += sin((pos.x + pos.y) * freq * 0.55 - uTime * 1.2) * 0.5;
+          float d = distance(pos.xy, uMouse * 18.0);
+          float mouseBump = exp(-d * 0.06) * 1.6;
+          pos.z += wave * 1.1 + mouseBump;
+          vHeight = pos.z;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 uColor1;
+        uniform vec3 uColor2;
+        varying float vHeight;
+        void main() {
+          float t = clamp((vHeight + 2.0) / 4.0, 0.0, 1.0);
+          vec3 color = mix(uColor1, uColor2, t);
+          gl_FragColor = vec4(color, 0.22);
+        }
+      `,
+    });
+    const waveMesh = new THREE.LineSegments(wireGeo, waveMaterial);
+    waveMesh.rotation.x = -Math.PI / 2.3;
+    waveMesh.position.y = -3.2;
+    bgScene.add(waveMesh);
+
+    const targetMouse = new THREE.Vector2(0, 0);
+    const currentMouse = new THREE.Vector2(0, 0);
+    window.addEventListener('pointermove', (e) => {
+      targetMouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      targetMouse.y = -((e.clientY / window.innerHeight) * 2 - 1);
+    });
+
+    // ---------- Scene 2: interactive wireframe icosahedron ----------
+    const objCanvas = document.getElementById('heroObjCanvas');
+    const objScene = new THREE.Scene();
+    const objCamera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+    objCamera.position.set(0, 0, 4.4);
+
+    const objRenderer = new THREE.WebGLRenderer({ canvas: objCanvas, alpha: true, antialias: true });
+    objRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const icoGeo = new THREE.IcosahedronGeometry(1.35, 1);
+    const icoEdges = new THREE.EdgesGeometry(icoGeo);
+    const icoMaterial = new THREE.LineBasicMaterial({ color: c1, transparent: true, opacity: 0.85 });
+    const icoMesh = new THREE.LineSegments(icoEdges, icoMaterial);
+    objScene.add(icoMesh);
+
+    const icoFillMaterial = new THREE.MeshBasicMaterial({ color: c2, transparent: true, opacity: 0.05 });
+    const icoFill = new THREE.Mesh(icoGeo, icoFillMaterial);
+    objScene.add(icoFill);
+
+    const controls = new OrbitControls(objCamera, objRenderer.domElement);
+    controls.enableZoom = false;
+    controls.enablePan = false;
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.autoRotate = !reduceMotion;
+    controls.autoRotateSpeed = 1.1;
+    controls.rotateSpeed = 0.6;
+
+    // ---------- Sizing ----------
+    function sizeBg() {
+      const w = window.innerWidth, h = window.innerHeight;
+      bgCamera.aspect = w / Math.max(h, 1);
+      bgCamera.updateProjectionMatrix();
+      bgRenderer.setSize(w, h, false);
+    }
+    function sizeObj() {
+      const w = objCanvas.clientWidth, h = objCanvas.clientHeight;
+      if (w === 0 || h === 0) return;
+      objCamera.aspect = w / h;
+      objCamera.updateProjectionMatrix();
+      objRenderer.setSize(w, h, false);
+    }
+    sizeBg();
+    sizeObj();
+    window.addEventListener('resize', sizeBg);
+    new ResizeObserver(sizeObj).observe(objCanvas);
+
+    // ---------- Theme changes: refresh accent colors ----------
+    const themeToggleBtn = document.getElementById('themeToggle');
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', () => {
+        setTimeout(() => {
+          const colors = getAccentColors();
+          waveUniforms.uColor1.value = colors.c1;
+          waveUniforms.uColor2.value = colors.c2;
+          icoMaterial.color = colors.c1;
+          icoFillMaterial.color = colors.c2;
+        }, 50);
+      });
+    }
+
+    // ---------- Pause when tab hidden (perf); icosahedron additionally pauses off-screen ----------
+    let heroVisible = true;
+    new IntersectionObserver((entries) => {
+      heroVisible = entries[0].isIntersecting;
+    }, { threshold: 0 }).observe(heroSection);
+
+    let running = true;
+    document.addEventListener('visibilitychange', () => {
+      running = !document.hidden;
+      if (running) { clock.getDelta(); loop(); }
+    });
+
+    // ---------- Single shared render loop ----------
+    // The wave-field background renders on every page/section (it's a fixed
+    // full-viewport layer); only the icosahedron pauses once you scroll past
+    // the hero, since it's not visible again until you scroll back up.
+    let frameId = null;
+    function loop() {
+      if (!running) { frameId = null; return; }
+      frameId = requestAnimationFrame(loop);
+      if (cosmosOpen) return;
+
+      const delta = clock.getDelta();
+
+      currentMouse.lerp(targetMouse, 0.04);
+      waveUniforms.uMouse.value.copy(currentMouse);
+      if (!reduceMotion) waveUniforms.uTime.value += delta * 0.6;
+      bgRenderer.render(bgScene, bgCamera);
+
+      if (heroVisible) {
+        controls.update();
+        objRenderer.render(objScene, objCamera);
+      }
+    }
+    loop();
+
+    window.addEventListener('pagehide', () => {
+      running = false;
+      if (frameId) cancelAnimationFrame(frameId);
+      controls.dispose();
+      bgRenderer.dispose();
+      objRenderer.dispose();
+      planeGeo.dispose();
+      wireGeo.dispose();
+      waveMaterial.dispose();
+      icoGeo.dispose();
+      icoEdges.dispose();
+      icoMaterial.dispose();
+      icoFillMaterial.dispose();
+    });
+  } catch (err) {
+    // WebGL unsupported or CDN unreachable — fail silently, the page works fine without it.
+    console.warn('3D hero scenes unavailable:', err);
+  }
+</script>
+
+<script type="module">
+  // ---------------------------------------------------------------------
+  // Data Cosmos — an alternate, opt-in 3D navigation mode. Lazily built on
+  // first activation (no WebGL context, no cost) via the galaxy button in
+  // the nav. Five node types (Lorenz attractor / neural-net graph / wave
+  // particle flow / star constellation / a hidden "mystery" torus-knot)
+  // plus a decorative glowing workstation sit in one scene; clicking a
+  // node (raycast) or a legend button flies the camera to it with GSAP
+  // and fades in a glassmorphism HTML panel with that section's content.
+  // Sound is continuous and reactive throughout, not just triggered on
+  // click — a synthesized (Web Audio API, no audio files) drone + faint
+  // noise texture plays the whole time Cosmos is open, plus a sonar-like
+  // telemetry ping that speeds up as you approach a node while exploring,
+  // on top of tones for flight/arrival. All muteable, all one masterGain.
+  // ---------------------------------------------------------------------
+  try {
+    if (typeof gsap === 'undefined') throw new Error('GSAP failed to load');
+    const THREE = await import('three');
+    const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const cosmosRoot = document.getElementById('cosmosRoot');
+    const canvas = document.getElementById('cosmosCanvas');
+    const toggleBtn = document.getElementById('cosmosToggle');
+    const exitBtn = document.getElementById('cosmosExitBtn');
+    const legend = document.getElementById('cosmosLegend');
+    const hint = document.getElementById('cosmosHint');
+
+    const NODE_POS = {
+      about: new THREE.Vector3(-11, 4, -4),
+      publications: new THREE.Vector3(11, 4, -4),
+      experience: new THREE.Vector3(-11, -4, -11),
+      contact: new THREE.Vector3(11, -4, -11),
+      mystery: new THREE.Vector3(0, 9, -22),
+    };
+    const DEFAULT_CAM_POS = new THREE.Vector3(0, 3, 26);
+    const DEFAULT_TARGET = new THREE.Vector3(0, -1, -7);
+
+    let scene, camera, renderer, controls;
+    let initialized = false, cosmosRunning = false, flying = false, activeNode = null;
+    const clickTargets = [];
+    const pulseSprites = [];
+    let lorenzGroup, constellationGroup, waveUniforms, mysteryGroup, mysteryUniforms;
+    const cClock = new THREE.Clock();
+
+    // ---------- Synthesized audio (Web Audio API — no external files) ----------
+    let audioCtx = null, masterGain = null, ambientOscillators = [];
+    let muted = localStorage.getItem('cosmosMuted') === 'true';
+
+    function ensureAudio() {
+      if (audioCtx) return;
+      try {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        masterGain = audioCtx.createGain();
+        masterGain.gain.value = muted ? 0 : 1;
+        masterGain.connect(audioCtx.destination);
+      } catch { /* Web Audio unavailable — sound simply won't play */ }
+    }
+
+    function playTone(freq, duration, type, peakGain, freqEnd) {
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type || 'sine';
+      const now = audioCtx.currentTime;
+      osc.frequency.setValueAtTime(freq, now);
+      if (freqEnd) osc.frequency.exponentialRampToValueAtTime(freqEnd, now + duration);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(peakGain, now + duration * 0.15);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+      osc.connect(gain).connect(masterGain);
+      osc.start(now);
+      osc.stop(now + duration + 0.05);
+    }
+    const playFlyOut = () => playTone(220, 0.5, 'sine', 0.1, 640);
+    const playFlyBack = () => playTone(520, 0.5, 'sine', 0.09, 160);
+    function playArrivalChime() {
+      playTone(660, 0.25, 'triangle', 0.08);
+      setTimeout(() => playTone(880, 0.3, 'triangle', 0.07), 90);
+    }
+
+    // Continuous ambient bed: a slow drone plus a very faint filtered-noise
+    // "deep space" texture, so the scene never falls silent while Cosmos is
+    // open — sound is present throughout, not just triggered on click.
+    function startAmbient() {
+      if (!audioCtx) return;
+      stopAmbient();
+      const ambientGain = audioCtx.createGain();
+      ambientGain.gain.value = 0;
+      ambientGain.connect(masterGain);
+      ambientGain.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 1.8);
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.value = 480;
+      filter.connect(ambientGain);
+      [55, 82.5, 110].forEach((f, i) => {
+        const osc = audioCtx.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.value = f;
+        const lfo = audioCtx.createOscillator();
+        lfo.frequency.value = 0.05 + i * 0.02;
+        const lfoGain = audioCtx.createGain();
+        lfoGain.gain.value = 2;
+        lfo.connect(lfoGain).connect(osc.frequency);
+        osc.connect(filter);
+        osc.start();
+        lfo.start();
+        ambientOscillators.push(osc, lfo);
+      });
+
+      const noiseBuffer = audioCtx.createBuffer(1, audioCtx.sampleRate * 4, audioCtx.sampleRate);
+      const noiseData = noiseBuffer.getChannelData(0);
+      for (let i = 0; i < noiseData.length; i++) noiseData[i] = Math.random() * 2 - 1;
+      const noise = audioCtx.createBufferSource();
+      noise.buffer = noiseBuffer;
+      noise.loop = true;
+      const noiseFilter = audioCtx.createBiquadFilter();
+      noiseFilter.type = 'bandpass';
+      noiseFilter.frequency.value = 2200;
+      noiseFilter.Q.value = 0.6;
+      const noiseGain = audioCtx.createGain();
+      noiseGain.gain.value = 0.014;
+      noise.connect(noiseFilter).connect(noiseGain).connect(masterGain);
+      noise.start();
+      ambientOscillators.push(noise);
+    }
+    function stopAmbient() {
+      ambientOscillators.forEach((o) => { try { o.stop(); } catch { /* already stopped */ } });
+      ambientOscillators = [];
+    }
+
+    // Continuous "telemetry ping" — a soft sonar-like blip whose repetition
+    // rate and pitch rise as the camera nears any node during free-look
+    // exploration, like an instrument sensing proximity. Silent during
+    // camera flights and while an overlay is open, so it doesn't clash with
+    // the arrival chime or clutter a panel you're reading.
+    let pingTimer = 0;
+    function updateTelemetryPing(delta) {
+      if (!audioCtx || muted || flying || activeNode || !camera) return;
+      let minDist = Infinity;
+      for (const key in NODE_POS) {
+        const d = camera.position.distanceTo(NODE_POS[key]);
+        if (d < minDist) minDist = d;
+      }
+      const proximity = 1 - Math.min(Math.max(minDist / 40, 0), 1);
+      const interval = 2.2 - proximity * 2.0;
+      pingTimer += delta;
+      if (pingTimer >= interval) {
+        pingTimer = 0;
+        playTone(500 + proximity * 320, 0.09, 'sine', 0.018 + proximity * 0.022);
+      }
+    }
+
+    function updateMuteIcon() {
+      const icon = document.getElementById('cosmosMuteIcon');
+      if (!icon) return;
+      icon.innerHTML = muted
+        ? '<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m23 9-6 6M17 9l6 6"/>'
+        : '<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/>';
+    }
+    function setMuted(m) {
+      muted = m;
+      localStorage.setItem('cosmosMuted', String(m));
+      if (masterGain) masterGain.gain.setTargetAtTime(m ? 0 : 1, audioCtx.currentTime, 0.05);
+      updateMuteIcon();
+    }
+    updateMuteIcon();
+
+    function makeGlowTexture() {
+      const size = 128;
+      const c = document.createElement('canvas');
+      c.width = c.height = size;
+      const ctx = c.getContext('2d');
+      const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+      g.addColorStop(0, 'rgba(255,255,255,1)');
+      g.addColorStop(0.4, 'rgba(255,255,255,.5)');
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, size, size);
+      return new THREE.CanvasTexture(c);
+    }
+
+    function makeHitTarget(key, pos, radius) {
+      const mesh = new THREE.Mesh(
+        new THREE.SphereGeometry(radius, 16, 16),
+        new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
+      );
+      mesh.position.copy(pos);
+      mesh.userData.nodeKey = key;
+      scene.add(mesh);
+      clickTargets.push(mesh);
+    }
+
+    // ---------- Node 1 — About/Education: Lorenz attractor ----------
+    function buildLorenz() {
+      const points = [];
+      const colors = [];
+      const colA = new THREE.Color(0x818cf8), colB = new THREE.Color(0xc084fc);
+      let x = 0.1, y = 0, z = 0;
+      const dt = 0.008, sigma = 10, rho = 28, beta = 8 / 3;
+      const steps = 7000;
+      for (let i = 0; i < steps; i++) {
+        const dx = sigma * (y - x) * dt, dy = (x * (rho - z) - y) * dt, dz = (x * y - beta * z) * dt;
+        x += dx; y += dy; z += dz;
+        points.push(new THREE.Vector3(x * 0.11, z * 0.11 - 2.7, y * 0.11));
+        const c = colA.clone().lerp(colB, i / steps);
+        colors.push(c.r, c.g, c.b);
+      }
+      const geo = new THREE.BufferGeometry().setFromPoints(points);
+      geo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+      const mat = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.85 });
+      const group = new THREE.Group();
+      group.add(new THREE.Line(geo, mat));
+      group.position.copy(NODE_POS.about);
+      scene.add(group);
+      makeHitTarget('about', NODE_POS.about, 4.2);
+      return group;
+    }
+
+    // ---------- Node 2 — Publications: glowing neural-network graph ----------
+    function buildNeuralNet(glowTex) {
+      const group = new THREE.Group();
+      const layers = [2, 4, 3, 2];
+      const layerXs = [-3, -1, 1, 3];
+      const nodePositions = [];
+      const nodeGeo = new THREE.SphereGeometry(0.13, 12, 12);
+      layers.forEach((count, li) => {
+        const layerPts = [];
+        for (let i = 0; i < count; i++) {
+          const py = (i - (count - 1) / 2) * 1.05;
+          const color = li % 2 === 0 ? 0x818cf8 : 0xc084fc;
+          const mesh = new THREE.Mesh(nodeGeo, new THREE.MeshBasicMaterial({ color }));
+          mesh.position.set(layerXs[li], py, 0);
+          group.add(mesh);
+          const sprite = new THREE.Sprite(new THREE.SpriteMaterial({
+            map: glowTex, color, transparent: true, opacity: 0.55,
+            blending: THREE.AdditiveBlending, depthWrite: false,
+          }));
+          sprite.scale.setScalar(1.05);
+          sprite.position.copy(mesh.position);
+          group.add(sprite);
+          pulseSprites.push(sprite);
+          layerPts.push(mesh.position);
+        }
+        nodePositions.push(layerPts);
+      });
+      const linePos = [];
+      for (let li = 0; li < nodePositions.length - 1; li++) {
+        nodePositions[li].forEach((a) => nodePositions[li + 1].forEach((b) => {
+          linePos.push(a.x, a.y, a.z, b.x, b.y, b.z);
+        }));
+      }
+      const lineGeo = new THREE.BufferGeometry();
+      lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+      group.add(new THREE.LineSegments(lineGeo, new THREE.LineBasicMaterial({ color: 0x818cf8, transparent: true, opacity: 0.18 })));
+      group.position.copy(NODE_POS.publications);
+      scene.add(group);
+      makeHitTarget('publications', NODE_POS.publications, 4.4);
+      return group;
+    }
+
+    // ---------- Node 3 — Experience/Skills: time-series wave particle flow ----------
+    function buildWaveFlow() {
+      const count = 1200;
+      const positions = new Float32Array(count * 3);
+      for (let i = 0; i < count; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 6.5;
+        positions[i * 3 + 1] = 0;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 3.4;
+      }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const uniforms = { uTime: { value: 0 }, uColor1: { value: new THREE.Color(0x38bdf8) }, uColor2: { value: new THREE.Color(0x818cf8) } };
+      const mat = new THREE.ShaderMaterial({
+        uniforms, transparent: true, depthWrite: false,
+        vertexShader: `
+          uniform float uTime;
+          varying float vY;
+          void main(){
+            vec3 pos = position;
+            float w = sin(pos.x * 1.3 + uTime * 1.1) * 0.35 + sin(pos.z * 2.0 - uTime * 0.7) * 0.2;
+            pos.y += w;
+            vY = w;
+            vec4 mv = modelViewMatrix * vec4(pos, 1.0);
+            gl_PointSize = 3.2 * (14.0 / -mv.z);
+            gl_Position = projectionMatrix * mv;
+          }
+        `,
+        fragmentShader: `
+          uniform vec3 uColor1;
+          uniform vec3 uColor2;
+          varying float vY;
+          void main(){
+            float d = length(gl_PointCoord - vec2(0.5));
+            if (d > 0.5) discard;
+            vec3 c = mix(uColor1, uColor2, clamp(vY * 0.8 + 0.5, 0.0, 1.0));
+            gl_FragColor = vec4(c, 0.85);
+          }
+        `,
+      });
+      const points = new THREE.Points(geo, mat);
+      points.position.copy(NODE_POS.experience);
+      scene.add(points);
+      makeHitTarget('experience', NODE_POS.experience, 4.0);
+      waveUniforms = uniforms;
+      return points;
+    }
+
+    // ---------- Node 4 — Contact: geometric data constellation ----------
+    function buildConstellation() {
+      const group = new THREE.Group();
+      const starCount = 55;
+      const starGeo = new THREE.OctahedronGeometry(0.09, 0);
+      const inst = new THREE.InstancedMesh(starGeo, new THREE.MeshBasicMaterial({ color: 0xfb923c }), starCount);
+      const dummy = new THREE.Object3D();
+      const pts = [];
+      for (let i = 0; i < starCount; i++) {
+        const p = new THREE.Vector3((Math.random() - 0.5) * 5, (Math.random() - 0.5) * 4, (Math.random() - 0.5) * 4);
+        pts.push(p);
+        dummy.position.copy(p);
+        dummy.scale.setScalar(0.6 + Math.random() * 0.9);
+        dummy.updateMatrix();
+        inst.setMatrixAt(i, dummy.matrix);
+      }
+      group.add(inst);
+      const linePos = [];
+      pts.forEach((p, i) => {
+        let best = -1, bestD = Infinity;
+        pts.forEach((q, j) => {
+          if (i === j) return;
+          const d = p.distanceTo(q);
+          if (d < bestD) { bestD = d; best = j; }
+        });
+        if (best >= 0 && bestD < 2.4) linePos.push(p.x, p.y, p.z, pts[best].x, pts[best].y, pts[best].z);
+      });
+      const lineGeo = new THREE.BufferGeometry();
+      lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+      group.add(new THREE.LineSegments(lineGeo, new THREE.LineBasicMaterial({ color: 0xfb923c, transparent: true, opacity: 0.3 })));
+      group.position.copy(NODE_POS.contact);
+      scene.add(group);
+      makeHitTarget('contact', NODE_POS.contact, 3.8);
+      return group;
+    }
+
+    // ---------- Node 5 — Mystery: an "unknown world" torus knot ----------
+    function buildMysteryNode() {
+      const geo = new THREE.TorusKnotGeometry(1.3, 0.38, 180, 20, 3, 8);
+      const edges = new THREE.EdgesGeometry(geo, 1);
+      const mat = new THREE.ShaderMaterial({
+        uniforms: { uTime: { value: 0 } },
+        transparent: true,
+        vertexShader: `
+          varying vec3 vPos;
+          void main(){
+            vPos = position;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `,
+        fragmentShader: `
+          uniform float uTime;
+          varying vec3 vPos;
+          vec3 hsv2rgb(vec3 c){
+            vec4 K = vec4(1.0, 2.0/3.0, 1.0/3.0, 3.0);
+            vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+            return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+          }
+          void main(){
+            float hue = fract(uTime * 0.08 + (vPos.x + vPos.y + vPos.z) * 0.03);
+            gl_FragColor = vec4(hsv2rgb(vec3(hue, 0.65, 1.0)), 0.9);
+          }
+        `,
+      });
+      const group = new THREE.Group();
+      group.add(new THREE.LineSegments(edges, mat));
+      group.position.copy(NODE_POS.mystery);
+      scene.add(group);
+      makeHitTarget('mystery', NODE_POS.mystery, 4.5);
+      mysteryUniforms = mat.uniforms;
+      return group;
+    }
+
+    // ---------- Decorative: a glowing workstation (abstract "scientist at work") ----------
+    function makeDataScreenTexture(seed) {
+      const w = 256, h = 168;
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#060818';
+      ctx.fillRect(0, 0, w, h);
+      ctx.strokeStyle = 'rgba(129,140,248,0.25)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 16) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+      for (let y = 0; y < h; y += 16) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+      ctx.strokeStyle = ['#818cf8', '#c084fc', '#38bdf8'][seed % 3];
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let x = 0; x < w; x++) {
+        const y = h / 2 + Math.sin(x * 0.05 + seed * 2) * 30 + Math.sin(x * 0.13 + seed) * 12;
+        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.fillStyle = 'rgba(255,255,255,0.5)';
+      for (let i = 0; i < 8; i++) {
+        const bh = 10 + Math.random() * 40;
+        ctx.fillRect(10 + i * 14, h - bh - 8, 6, bh);
+      }
+      return new THREE.CanvasTexture(c);
+    }
+
+    function buildWorkstation(glowTex) {
+      const group = new THREE.Group();
+
+      const desk = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.15, 1.6), new THREE.MeshBasicMaterial({ color: 0x1a1c2e }));
+      desk.position.set(0, -0.6, 0);
+      group.add(desk);
+
+      const consolePanel = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.6, 0.12), new THREE.MeshBasicMaterial({ color: 0x14162a }));
+      consolePanel.position.set(0, -0.05, -0.7);
+      consolePanel.rotation.x = -0.35;
+      group.add(consolePanel);
+
+      const btnColors = [0x818cf8, 0xc084fc, 0x38bdf8, 0xfb923c, 0x4ade80];
+      btnColors.forEach((color, i) => {
+        const btn = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.14, 0.03), new THREE.MeshBasicMaterial({ color }));
+        btn.position.set(-1.4 + i * 0.7, 0.05, -0.64);
+        btn.rotation.x = -0.35;
+        group.add(btn);
+        const spr = new THREE.Sprite(new THREE.SpriteMaterial({
+          map: glowTex, color, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, depthWrite: false,
+        }));
+        spr.scale.setScalar(0.4);
+        spr.position.copy(btn.position);
+        group.add(spr);
+        pulseSprites.push(spr);
+      });
+
+      [
+        { pos: [-1.6, 1.1, -1.0], rotY: 0.35 },
+        { pos: [0, 1.4, -1.3], rotY: 0 },
+        { pos: [1.6, 1.1, -1.0], rotY: -0.35 },
+      ].forEach((s, i) => {
+        const mat = new THREE.MeshBasicMaterial({ map: makeDataScreenTexture(i), transparent: true, opacity: 0.92, side: THREE.DoubleSide });
+        const plane = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 0.85), mat);
+        plane.position.set(...s.pos);
+        plane.rotation.y = s.rotY;
+        group.add(plane);
+      });
+
+      const stool = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.22, 0.5, 12), new THREE.MeshBasicMaterial({ color: 0x0f1120 }));
+      stool.position.set(0, -1.1, 1.1);
+      group.add(stool);
+
+      group.position.set(0, -2.5, 3);
+      scene.add(group);
+      return group;
+    }
+
+    // ---------- Ambient starfield (decorative, not interactive) ----------
+    function buildStarfield() {
+      const count = 1800;
+      const positions = new Float32Array(count * 3);
+      for (let i = 0; i < count; i++) {
+        const r = 50 + Math.random() * 60;
+        const theta = Math.random() * Math.PI * 2, phi = Math.acos(2 * Math.random() - 1);
+        positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+        positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+        positions[i * 3 + 2] = r * Math.cos(phi);
+      }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const mat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.18, transparent: true, opacity: 0.55, sizeAttenuation: true });
+      scene.add(new THREE.Points(geo, mat));
+    }
+
+    function initScene() {
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 300);
+      camera.position.copy(DEFAULT_CAM_POS);
+
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setClearColor(0x05060d, 1);
+      renderer.setSize(window.innerWidth, window.innerHeight, false);
+
+      controls = new OrbitControls(camera, renderer.domElement);
+      controls.target.copy(DEFAULT_TARGET);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+      controls.enablePan = false;
+      controls.minDistance = 6;
+      controls.maxDistance = 46;
+      controls.update();
+
+      buildStarfield();
+      const glowTex = makeGlowTexture();
+      lorenzGroup = buildLorenz();
+      buildNeuralNet(glowTex);
+      buildWaveFlow();
+      constellationGroup = buildConstellation();
+      mysteryGroup = buildMysteryNode();
+      buildWorkstation(glowTex);
+
+      // Raycasting: click a node to fly to it; hover for a pointer cursor.
+      const raycaster = new THREE.Raycaster();
+      const pointer = new THREE.Vector2();
+      function pickAt(e) {
+        const rect = canvas.getBoundingClientRect();
+        pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        raycaster.setFromCamera(pointer, camera);
+        return raycaster.intersectObjects(clickTargets, false);
+      }
+      canvas.addEventListener('pointerdown', (e) => {
+        if (flying || activeNode) return;
+        const hits = pickAt(e);
+        if (hits.length) flyTo(hits[0].object.userData.nodeKey);
+      });
+      canvas.addEventListener('pointermove', (e) => {
+        if (flying || activeNode) { canvas.classList.remove('hoverable'); return; }
+        canvas.classList.toggle('hoverable', pickAt(e).length > 0);
+      });
+
+      window.addEventListener('resize', () => {
+        if (!initialized) return;
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight, false);
+      });
+    }
+
+    function setHUDVisible(visible) {
+      legend.style.opacity = visible ? '1' : '0';
+      legend.style.pointerEvents = visible ? 'auto' : 'none';
+      hint.style.opacity = visible ? '1' : '0';
+    }
+
+    function flyTo(key) {
+      if (flying || activeNode === key) return;
+      flying = true;
+      activeNode = key;
+      controls.enabled = false;
+      setHUDVisible(false);
+      playFlyOut();
+      const pos = NODE_POS[key];
+      const flyPos = pos.clone().add(new THREE.Vector3(0, 0.6, 7));
+      const duration = reduceMotion ? 0.5 : 1.7;
+      gsap.to(camera.position, { x: flyPos.x, y: flyPos.y, z: flyPos.z, duration, ease: 'power3.inOut' });
+      gsap.to(controls.target, {
+        x: pos.x, y: pos.y, z: pos.z, duration, ease: 'power3.inOut',
+        onUpdate: () => controls.update(),
+        onComplete: () => {
+          flying = false;
+          document.getElementById('overlay-' + key).classList.add('show');
+          playArrivalChime();
+        },
+      });
+    }
+
+    function flyBack() {
+      if (flying || !activeNode) return;
+      flying = true;
+      document.getElementById('overlay-' + activeNode).classList.remove('show');
+      activeNode = null;
+      playFlyBack();
+      const duration = reduceMotion ? 0.5 : 1.4;
+      gsap.to(camera.position, { x: DEFAULT_CAM_POS.x, y: DEFAULT_CAM_POS.y, z: DEFAULT_CAM_POS.z, duration, ease: 'power3.inOut' });
+      gsap.to(controls.target, {
+        x: DEFAULT_TARGET.x, y: DEFAULT_TARGET.y, z: DEFAULT_TARGET.z, duration, ease: 'power3.inOut',
+        onUpdate: () => controls.update(),
+        onComplete: () => { flying = false; controls.enabled = true; setHUDVisible(true); },
+      });
+    }
+
+    function cosmosLoop() {
+      if (!cosmosRunning) return;
+      requestAnimationFrame(cosmosLoop);
+      const delta = cClock.getDelta();
+      const t = performance.now() * 0.001;
+      if (!reduceMotion) {
+        lorenzGroup.rotation.y += delta * 0.06;
+        constellationGroup.rotation.y -= delta * 0.05;
+        if (waveUniforms) waveUniforms.uTime.value += delta;
+        if (mysteryGroup) { mysteryGroup.rotation.y += delta * 0.15; mysteryGroup.rotation.x += delta * 0.07; }
+        if (mysteryUniforms) mysteryUniforms.uTime.value += delta;
+        pulseSprites.forEach((s, i) => s.scale.setScalar(1.05 + Math.sin(t * 2 + i) * 0.15));
+      }
+      updateTelemetryPing(delta);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    function openCosmos() {
+      cosmosRoot.hidden = false;
+      document.body.classList.add('cosmos-active');
+      document.body.style.overflow = 'hidden';
+      window.dispatchEvent(new CustomEvent('cosmos:open'));
+      if (!initialized) { initialized = true; initScene(); }
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight, false);
+      cosmosRunning = true;
+      cClock.getDelta();
+      cosmosLoop();
+      ensureAudio();
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      startAmbient();
+    }
+
+    function closeCosmos() {
+      cosmosRunning = false;
+      cosmosRoot.hidden = true;
+      document.body.classList.remove('cosmos-active');
+      document.body.style.overflow = '';
+      window.dispatchEvent(new CustomEvent('cosmos:close'));
+      if (activeNode) {
+        document.getElementById('overlay-' + activeNode).classList.remove('show');
+        activeNode = null;
+      }
+      flying = false;
+      setHUDVisible(true);
+      stopAmbient();
+      if (controls) {
+        controls.enabled = true;
+        camera.position.copy(DEFAULT_CAM_POS);
+        controls.target.copy(DEFAULT_TARGET);
+        controls.update();
+      }
+    }
+
+    toggleBtn.addEventListener('click', openCosmos);
+    exitBtn.addEventListener('click', closeCosmos);
+    document.getElementById('cosmosMuteBtn').addEventListener('click', () => {
+      ensureAudio();
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      setMuted(!muted);
+    });
+    legend.querySelectorAll('button').forEach((btn) => {
+      btn.addEventListener('click', () => flyTo(btn.dataset.node));
+    });
+    document.querySelectorAll('[data-back]').forEach((btn) => {
+      btn.addEventListener('click', flyBack);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !cosmosRoot.hidden) {
+        if (activeNode) flyBack(); else closeCosmos();
+      }
+    });
+  } catch (err) {
+    // GSAP/WebGL/CDN unavailable — hide the entry point so it doesn't look broken.
+    console.warn('Data Cosmos unavailable:', err);
+    const btn = document.getElementById('cosmosToggle');
+    if (btn) btn.style.display = 'none';
+  }
+</script>
+</body>
+</html>
